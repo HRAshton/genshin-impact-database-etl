@@ -1,6 +1,6 @@
 async function DbConnector_Tests() {
   try {
-    new DbConnector().getParsingResultCellsByUrls(['/i_3/?lang=RU']);
+    new DbConnector().getRawJsons(['/i_3/?lang=RU']);
   } catch (ex) {
     Logger.log(ex);
     throw ex;
@@ -14,86 +14,124 @@ class DbConnector {
 
   /* History: begin */
   getUpdatesHistory() {
-    const sheet = this.spreadsheet.getSheetByName('updates_history');
+    const sheet = this.spreadsheet.getSheetByName('RawJsons');
 
-    const pairs = sheet.getRange('A2:B').getValues();
-    pairs.sort((pair1, pair2) => pair1[1] - pair2[1]);
+    const urls = sheet.getRange('A2:A').getValues();
+    const checkedAtDates = sheet.getRange('G2:G').getValues();
 
-    // Logger.log(pairs);
-    const urls = pairs.map(pair => ({ url: pair[0], updatedAt: pair[1] }));
+    const pairs = urls.map((_, i) => ({ url: urls[i][0], updatedAt: checkedAtDates[i] }));
+    pairs.sort((pair1, pair2) => pair1.updatedAt - pair2.updatedAt);
 
-    return urls;
+    return pairs;
   }
 
   updateUpdatesHistory(url, isFailed) {
-    const sheet = this.spreadsheet.getSheetByName('updates_history');
+    const sheet = this.spreadsheet.getSheetByName('RawJsons');
 
     const date = (isFailed ? new Date('2025-01-01') : new Date()).toISOString();
-    const range = sheet.getRange('A:A');
-    const updatesHistory = range.getValues();
-    const rowIndex = updatesHistory.findIndex(row => row[0] === url);
-    if (rowIndex !== -1) {
-      // Update
-      sheet.getRange(rowIndex + 1, 2).setValue(date);
-    } else {
-      // Insert
-      sheet.appendRow([url, date]);
-    }
+    const row = this._getRowByText(sheet.getRange('A2:A'), url);
+
+    sheet.getRange(row, 7).setValue(date);
   }
   /* History: end */
 
   /* Content: begin */
   getKnownIds() {
-    const sheet = this.spreadsheet.getSheetByName('content');
-    const idsArrays = sheet.getRange('C2:C').getValues();
+    const sheet = this.spreadsheet.getSheetByName('RawJsons');
+    const idsArrays = sheet.getRange('D2:D').getValues();
     const ids = idsArrays
-      .flatMap(arr => arr)
+      .map(arr => arr[0])
       .filter(id => !!id);
 
     return ids;
   }
 
-  getParsingResultCellsByUrls(urls) {
-    const sheet = this.spreadsheet.getSheetByName('content');
+  checkIfRawJsonExists(url, hash) {
+    const sheet = this.spreadsheet.getSheetByName('RawJsons');
 
-    let results;
-    for (const url of urls) {
-      const textFinder = sheet.getRange('A2:A').createTextFinder(url).matchCase(true).matchEntireCell(true);
-      const matches = textFinder.findAll();
-      const rows = matches.map(range => range.getRow());
-      results = rows
-        .map(row => sheet.getRange(row, 1, 1, 2).getValues())
-        .map(row => ({ url: row[0], content: row[1] }));
+    const row = this._getRowByText(sheet.getRange('E2:E'), hash);
+    if (!row) {
+      return false;
     }
 
-    return results;
+    const exists = sheet.getRange(row, 1).getValue() === url;
+
+    return exists;
   }
 
-  removeContentByUrl(url) {
-    const sheet = this.spreadsheet.getSheetByName('content');
-    const urls = sheet.getRange('A2:A').getValues();
+  getRawJsons(urls) {
+    const sheet = this.spreadsheet.getSheetByName('RawJsons');
 
-    let deletedCount = 0;
-    for (let rowIndex = urls.length - 1; rowIndex > 0; rowIndex--) {
-      if (urls[rowIndex][0] !== url) {
+    const content = [];
+    for (const url of urls) {
+      const row = this._getRowByText(sheet.getRange('A2:A'), url);
+      if (!row) {
         continue;
       }
 
-      sheet.deleteRow(rowIndex + 2); // Index starts with 1 ABND there is the header row.
-      deletedCount++;
+      const json = sheet.getRange(row, 3).getNote();
+
+      content.push(json);
     }
 
-    return deletedCount;
+    return content;
   }
 
-  updateContentWithUrl(chunks) {
-    const sheet = this.spreadsheet.getSheetByName('content');
+  setRowJson(url, json, entityIds, hash, date) {
+    const sheet = this.spreadsheet.getSheetByName('RawJsons');
 
-    const lastRow = sheet.getLastRow();
-    sheet.insertRowsAfter(lastRow, chunks.length);
-    sheet.getRange(lastRow + 1, 1, chunks.length, 3).setValues(chunks);
+    const existingRow = this._getRowByText(sheet.getRange('A2:A'), url);
+    let modifiedRow;
+    if (!!existingRow) {
+      modifiedRow = existingRow;
 
-    return chunks.length;
+      sheet
+        .getRange(modifiedRow, 4, 1, 3)
+        .setValues([[
+          entityIds,
+          hash,
+          date.toISOString(),
+        ]]);
+    } else {
+      const lastRow = sheet.getLastRow();
+      sheet.insertRowsAfter(lastRow, 1);
+
+      modifiedRow = lastRow + 1;
+
+      sheet
+        .getRange(modifiedRow, 1, 1, 6)
+        .setValues([[
+          url,
+          date.toISOString(),
+          'content',
+          entityIds,
+          hash,
+          date.toISOString(),
+        ]]);
+    }
+
+    sheet.getRange(modifiedRow, 3).setNote(json);
   }
   /* Content: end */
+
+  /* Log: begin */
+  saveLog(startTime, log) {
+    const sheet = this.spreadsheet.getSheetByName('Logs');
+
+    sheet.deleteRow(1);
+    sheet.appendRow([startTime]);
+    sheet.getRange(30000, 1).setNote(log);
+  }
+  /* Log: end */
+
+  _getRowByText(range, text) {
+    const textFinder = range
+      .createTextFinder(text)
+      .matchCase(true)
+      .matchEntireCell(true);
+    const match = textFinder.findNext();
+    const row = match?.getRow();
+
+    return row;
+  }
 }

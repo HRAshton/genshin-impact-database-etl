@@ -1,5 +1,6 @@
 class FetchingService {
-    async fetchAsync(url) {
-        return new Promise(resolve => resolve(UrlFetchApp.fetch(url).getContentText()));
-    }
+  async fetchAsync(url) {
+    Utilities.sleep(500);
+    return new Promise(resolve => resolve(UrlFetchApp.fetch(url).getContentText()));
+  }
 }

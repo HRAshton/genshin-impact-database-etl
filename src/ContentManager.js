@@ -13,51 +13,33 @@ class ContentManager {
     const urls = ids.map(id => `/${id}/?lang=${lang}`);
     Logger.log('Urls created.');
 
-    const cellsContent = this.dbConnector.getParsingResultCellsByUrls(urls);
-    if (!cellsContent || !cellsContent.length) {
-      throw new Error(`Entity with id '${ids}' not found.`);
-    }
+    const cellsContent = this.dbConnector.getRawJsons(urls);
     Logger.log('Cells fetched.');
 
-    const jsonsParts = {};
-    for (const pair of cellsContent) {
-      if (!jsonsParts[pair.url]) {
-        jsonsParts[pair.url] = [];
-      }
-
-      jsonsParts[pair.url].push(pair.content);
-    }
-    Logger.log('Jsons grouped.');
-
-    const jsons = Object.values(jsonsParts)
-      .map(parts => parts.join(''))
-      .filter(json => !!json);
-    Logger.log('Jsons joined.');
-
-    const objects = jsons.map(json => JSON.parse(json));
+    const objects = cellsContent.map(json => JSON.parse(json));
     Logger.log('Objects parsed.');
 
     return objects;
   }
 
   updateParsingResult(url, parsingResult) {
-    const deletedCount = this.dbConnector.removeContentByUrl(url);
-    Logger.log(`${deletedCount} rows of content deleted.`);
-
-    const chunkSize = 50000; // Max length of Google Sheet`s cell content.
     const json = JSON.stringify(parsingResult);
-    const chunks = [];
-    for (let i = 0; i < json.length; i += chunkSize) {
-      const chunk = json.substring(i, i + 50000);
-      chunks.push([url, chunk, '']);
-    }
+    const hash = this._hashStr(json);
 
-    chunks[0][2] = this._getEntityIds(parsingResult)
+    const isRawJsonExists = this.dbConnector.checkIfRawJsonExists(url, hash);
+    if (isRawJsonExists) {
+      Logger.log(`Data has now changed and skipped: '${url}'.`);
+
+      return false;
+    }
+    const entityIds = this._getEntityIds(parsingResult)
       .filter((id, i, arr) => arr.indexOf(id) === i)
       .join(',');
 
-    const intertedCount = this.dbConnector.updateContentWithUrl(chunks);
-    Logger.log(`${intertedCount} rows of content inserted.`);
+    this.dbConnector.setRowJson(url, json, entityIds, hash, new Date());
+
+    Logger.log(`Content saved with hash '${hash}'.`);
+    return true;
   }
 
   _getEntityIds(parsingResult) {
@@ -73,9 +55,17 @@ class ContentManager {
 
     for (const value of Object.values(parsingResult)) {
       const ids = this._getEntityIds(value);
-      ids.forEach(id => entityIds.push(id));
+      entityIds.push(...ids);
     }
 
     return entityIds;
+  }
+
+  _hashStr(str) {
+    for (var i = 0, h = 0; i < str.length; i++) {
+      h = Math.imul(31, h) + str.charCodeAt(i) | 0;
+    }
+
+    return h;
   }
 }
