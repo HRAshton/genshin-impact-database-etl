@@ -118,9 +118,10 @@ class DbConnector {
   saveLog(startTime, log) {
     const sheet = this.spreadsheet.getSheetByName('Logs');
 
-    sheet.deleteRow(1);
-    sheet.appendRow([startTime]);
-    sheet.getRange(30000, 1).setNote(log);
+    sheet.deleteRow(30000);
+    sheet.insertRowBefore(1);
+    sheet.getRange(1, 1).setValue(startTime);
+    sheet.getRange(1, 1).setNote(log);
   }
   /* Log: end */
 
