@@ -36,5 +36,5 @@ const doGet = (event = {}) => {
 };
 
 function _test() {
-  doGet({ parameter: { action: 'getByIds', ids: 'hs_40' } });
+  doGet({ parameter: { action: 'getByIds', ids: 'fam_book_family_1006' } });
 }
