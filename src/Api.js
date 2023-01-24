@@ -9,9 +9,9 @@
 const doGet = (event = {}) => {
   Logger.log('Request received.');
 
-  const { action = 'getByIds', id = null, ids = null, lang = 'RU' } = event.parameter;
+  const { action = 'getByIds', ids = null, lang = 'RU' } = event.parameter;
   if (lang !== 'RU') {
-    throw new Error(`Unexpected 'id' (${id}) or lang ('${lang}').`);
+    throw new Error(`Unexpected 'id' (${ids}) or lang ('${lang}').`);
   }
   Logger.log('Query parsed.')
 
