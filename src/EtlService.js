@@ -1,6 +1,6 @@
 BaseUrl = 'https://genshin.honeyhunterworld.com';
 Langs = ['RU', 'EN'];
-UrlReloadPeriodSecs = 7 * 24 * 60 * 60; // 7 days
+UrlReloadPeriodSecs = 4 * 24 * 60 * 60; // 4 days
 ScriptTimeoutSecs = 4 * 60; // 4 minutes
 
 class EtlService {
