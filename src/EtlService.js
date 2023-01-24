@@ -51,8 +51,7 @@ class EtlService {
         ? await this._fetchUrlsFromNavbarAsync(lang)
         : [];
 
-      const entitiesUrls = knownIds.map(id => `/${id}/?lang=${lang}`)
-        .filter(id => !id.includes('/tut_')); // todo: temp workaround for tutors
+      const entitiesUrls = knownIds.map(id => `/${id}/?lang=${lang}`);
 
       knownUrls.push(...navBarUrls, ...entitiesUrls);
     }
