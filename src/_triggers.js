@@ -1,6 +1,6 @@
 async function run_etl() {
   const locker = LockService.getDocumentLock();
-  if (!locker.tryLock(1)) {
+  if (locker.hasLock() || !locker.tryLock(1)) {
     throw Error('Locked.');
   }
 
