@@ -51,8 +51,8 @@ class EtlService {
         ? await this._fetchUrlsFromNavbarAsync(lang)
         : [];
 
-      const knownIds = this.contentManager.getKnownIds();
-      const entitiesUrls = knownIds.map(id => `/${id}/?lang=${lang}`);
+      const entitiesUrls = knownIds.map(id => `/${id}/?lang=${lang}`)
+        .filter(id => !id.includes('/tut_')); // todo: temp workaround for tutors
 
       knownUrls.push(...navBarUrls, ...entitiesUrls);
     }
