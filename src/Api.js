@@ -4,7 +4,7 @@
  * @param {string} id - Entity id.
  * @param {string} ids - Entity ids (joined by ',').
  * @param {string} lang - Language (RU by default).
- * @returns {GenshinHoneHunperWorldParser.ParsingResult} - Parsing result.
+ * @returns {GenshinHoneHunterWorldParser.ParsingResult} - Parsing result.
  */
 const doGet = (event = {}) => {
   Logger.log('Request received.');
