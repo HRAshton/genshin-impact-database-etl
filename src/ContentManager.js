@@ -66,6 +66,6 @@ class ContentManager {
       h = Math.imul(31, h) + str.charCodeAt(i) | 0;
     }
 
-    return h;
+    return '0x' + Math.abs(h).toString(16);
   }
 }
