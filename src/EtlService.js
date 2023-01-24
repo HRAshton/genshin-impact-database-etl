@@ -23,7 +23,9 @@ class EtlService {
         break;
       }
 
-      const allKnownUrls = await this._getAllKnownUrlsAsync();
+      const fetchMenu = startTime.getMinutes() < 5; // menu fetches only once per an hour.
+
+      const allKnownUrls = await this._getAllKnownUrlsAsync(fetchMenu);
       const urlsToFetch = this._filterUrlsByActuality(allKnownUrls);
 
       previousLoadingResult = await this._loadAcqDataAsync(urlsToFetch, startTime);
@@ -40,11 +42,14 @@ class EtlService {
     }
   }
 
-  async _getAllKnownUrlsAsync() {
-    const knownUrls = [];
+  async _getAllKnownUrlsAsync(fetchMenu) {
+    const knownIds = this.contentManager.getKnownIds();
 
+    const knownUrls = [];
     for (const lang of Langs) {
-      const navBarUrls = await this._fetchUrlsFromNavbarAsync(lang);
+      const navBarUrls = fetchMenu
+        ? await this._fetchUrlsFromNavbarAsync(lang)
+        : [];
 
       const knownIds = this.contentManager.getKnownIds();
       const entitiesUrls = knownIds.map(id => `/${id}/?lang=${lang}`);
