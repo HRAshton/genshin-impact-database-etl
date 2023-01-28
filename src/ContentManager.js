@@ -10,10 +10,10 @@ class ContentManager {
   }
 
   getParsingResultsByIds(ids, lang) {
-    const urls = ids.map(id => `/${id}/?lang=${lang}`);
-    Logger.log('Urls created.');
+    const keys = ids.map(id => `${id}_${lang}`);
+    Logger.log('Keys created.');
 
-    const cellsContent = this.dbConnector.getRawJsons(urls);
+    const cellsContent = this.dbConnector.getFinJsons(keys);
     Logger.log('Cells fetched.');
 
     const objects = cellsContent.map(json => JSON.parse(json));

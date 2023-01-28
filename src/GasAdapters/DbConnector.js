@@ -59,6 +59,15 @@ class DbConnector {
     return exists;
   }
 
+  getAllRawJsons() {
+    const sheet = this.spreadsheet.getSheetByName('RawJsons');
+    const notes = sheet
+      .getRange('C2:C')
+      .getNotes();
+
+    return notes;
+  }
+
   getRawJsons(urls) {
     const sheet = this.spreadsheet.getSheetByName('RawJsons');
 
@@ -124,6 +133,19 @@ class DbConnector {
     sheet.getRange(1, 1).setNote(log);
   }
   /* Log: end */
+
+  /* Fin: begin */
+  saveFinalizationData(keys, items) {
+    const finSheet = this.spreadsheet.getSheetByName('Fin');
+    GenshinHoneyHunterWorldParser.assert(
+      keys.length === items.length,
+      'Keys should have same length as notes.');
+
+    const range = finSheet.getRange(1, 1, items.length, 1);
+    range.setValues(keys);
+    range.setNotes(items);
+  }
+  /* Fin: end */
 
   _getRowByText(range, text) {
     const textFinder = range

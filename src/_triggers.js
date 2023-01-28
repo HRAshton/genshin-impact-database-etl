@@ -1,4 +1,4 @@
-async function run_etl() {
+function run_etl() {
   const locker = LockService.getDocumentLock();
   if (locker.hasLock() || !locker.tryLock(1)) {
     throw Error('Locked.');
@@ -14,6 +14,13 @@ async function run_etl() {
   etlService.updateAll();
 
   locker.releaseLock();
+}
+
+function run_finalization() {
+  const dbConnector = new DbConnector();
+  const finLoader = new FinLoader(dbConnector);
+
+  finLoader.load();
 }
 
 function disable_trigger() {
