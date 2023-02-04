@@ -15,13 +15,6 @@ function printUnknownColumns() {
 }
 
 function migrateToHex() {
-  const spreadsheet = SfgpreadsheetApp.getActiveSpreadsheet();
-  const sheet = spreadsheet.getSheetByName('RawJsons');
-  const range = sheet.getRange('E2:E');
-  const values = range.getValues();
-  for (let i = 1; i < values.length; i++) {
-    values[i][0] = parseInt(values[i][0].toString()).toString(16);
-  }
-
-  range.setValues(values);
+  Logger.log(DriveApp.createFile('test_empty_file', '').getId());
+  Logger.log(DriveApp.createFile('test_empty_file', '').getId());
 }

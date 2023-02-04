@@ -1,18 +1,28 @@
 /**
  * Gets data for entity.
  * @param {string} action - Action. Options: 'getByIds' (default).
- * @param {string} id - Entity id.
  * @param {string} ids - Entity ids (joined by ',').
- * @param {string} lang - Language (RU by default).
+ * @param {string} locale - Language.
  * @returns {GenshinHoneHunterWorldParser.ParsingResult} - Parsing result.
  */
 const doGet = (event = {}) => {
   Logger.log('Request received.');
 
-  const { action = 'getByIds', ids = null, lang = 'RU' } = event.parameter;
-  if (lang !== 'RU') {
-    throw new Error(`Unexpected 'id' (${ids}) or lang ('${lang}').`);
+  const allowedLocales = ['ru_RU', 'en_EN'];
+  const { action = 'getByIds', ids, locale } = event.parameter;
+
+  if (!allowedLocales.includes(locale)) {
+    throw new Error(`Unexpected locale: '${locale}'. Only ${allowedLocales} allowed.`);
   }
+
+  if (!ids || !ids.length) {
+    throw new Error(`Parameter should not be empty: ids.`);
+  }
+
+  if (action !== 'getByIds') {
+    throw new Error(`Unexpected action: '${action}'. Only 'getByIds' allowed.`);
+  }
+
   Logger.log('Query parsed.')
 
   const dbConnector = new DbConnector();
@@ -22,7 +32,7 @@ const doGet = (event = {}) => {
   let result;
   switch (action) {
     case 'getByIds':
-      result = contentManager.getParsingResultsByIds(ids.split(','), lang);
+      result = contentManager.getParsingResultsByIds(ids.split(','), locale);
       break;
 
     default:
@@ -36,5 +46,5 @@ const doGet = (event = {}) => {
 };
 
 function _test() {
-  doGet({ parameter: { action: 'getByIds', ids: 'fam_book_family_1006' } });
+  doGet({ parameter: { ids: 'fam_book_family_1006,fam_book_family_1005', locale: 'ru_RU' } });
 }

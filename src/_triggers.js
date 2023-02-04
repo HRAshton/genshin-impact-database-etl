@@ -1,19 +1,37 @@
-function run_etl() {
+function run_extract() {
   const locker = LockService.getDocumentLock();
   if (locker.hasLock() || !locker.tryLock(1)) {
     throw Error('Locked.');
   }
 
-  const fetchingService = new FetchingService();
-  const pageParser = new GenshinHoneyHunterWorldParser.getPageParser();
-  const dbConnector = new DbConnector();
-  const contentManager = new ContentManager(dbConnector);
-  const logManager = new LogManager(dbConnector);
-  const etlService = new EtlService(fetchingService, pageParser, dbConnector, contentManager, logManager);
+  try {
+    const fetchingService = new FetchingService();
+    const dbConnector = new DbConnector();
+    const fileSystemConnector = new FileSystemConnector()
+    const extractService = new ExtractService(fetchingService, dbConnector, fileSystemConnector);
 
-  etlService.updateAll();
+    extractService.extractAsync();
+  } catch (ex) {
+    Logger.log(ex);
+    throw ex;
+  }
 
   locker.releaseLock();
+}
+
+function run_transform() {
+  try {
+    const dbConnector = new DbConnector();
+    const logManager = new LogManager(dbConnector);
+    const fileSystemConnector = new FileSystemConnector();
+    const pageParser = GenshinHoneyHunterWorldParser.getPageParser();
+    const transformService = new TransformService(dbConnector, fileSystemConnector, pageParser, logManager);
+
+    transformService.transform();
+  } catch (ex) {
+    Logger.log(ex);
+    throw ex;
+  }
 }
 
 function run_finalization() {
@@ -21,6 +39,14 @@ function run_finalization() {
   const finLoader = new FinLoader(dbConnector);
 
   finLoader.load();
+}
+
+function run_backpropagation() {
+  const dbConnector = new DbConnector();
+  const fileSystemConnector = new FileSystemConnector();
+  const backpropagationService = new BackpropagationService(dbConnector, fileSystemConnector);
+
+  backpropagationService.registerUrls();
 }
 
 function disable_trigger() {

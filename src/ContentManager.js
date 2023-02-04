@@ -10,7 +10,7 @@ class ContentManager {
   }
 
   getParsingResultsByIds(ids, lang) {
-    const keys = ids.map(id => `${id}_${lang}`);
+    const keys = ids.map(id => `${lang}/${id}`);
     Logger.log('Keys created.');
 
     const cellsContent = this.dbConnector.getFinJsons(keys);

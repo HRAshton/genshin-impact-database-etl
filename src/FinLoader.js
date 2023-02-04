@@ -17,17 +17,8 @@ class FinLoader {
     console.info('Parsing items...');
     const items = this._parseItems(notes);
 
-    console.info('Postprocessing...');
-    const ss = SpreadsheetApp.getActiveSpreadsheet();
-    const langs = ss
-      .getSheetByName('RawJsons')
-      .getRange('A2:A')
-      .getValues()
-      .map(val => val[0].substring(val[0].length - 2));
-    items.forEach((item, i) => item['Lang'] = langs[i]);
-
     console.info('Saving...');
-    const keys = items.map(item => [`${item['Id']}_${item['Lang']}`]);
+    const keys = items.map(item => [`${item['Metadata'] ? item['Metadata']['Locale'] : null}/${item['Id']}`]);
     const jsons = items.map(item => [JSON.stringify(item)]);
     this._dbConnector.saveFinalizationData(keys, jsons);
 
@@ -53,7 +44,7 @@ class FinLoader {
         'Id': obj['Id'],
         'Name': obj['Name'],
         'Main': obj['Main'] || {},
-        'Lang': obj['Lang'],
+        'Metadata': obj['Metadata'],
       }
 
       const tables = obj['Tables'];
@@ -96,8 +87,8 @@ class FinLoader {
   _setNestedProperty(obj, path, value) {
     const keys = [...path];
     const lastKey = keys.pop();
-    const lastObj = keys.reduce((obj, key) =>
-      obj[key] = obj[key] || {},
+    const lastObj = keys.reduce(
+      (obj, key) => obj[key] = obj[key] || {},
       obj);
 
     lastObj[lastKey] = value;
