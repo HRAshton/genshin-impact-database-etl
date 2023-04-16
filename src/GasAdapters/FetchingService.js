@@ -16,7 +16,7 @@ class FetchingService {
     Utilities.sleep(Math.max(timeToWait, 0));
     this._lastRequestTimestamp = timestamp;
 
-    const fetchResult = UrlFetchApp.fetch(url, { 'followRedirects': false, 'muteHttpExceptions': false });
+    const fetchResult = UrlFetchApp.fetch(url, { followRedirects: false, muteHttpExceptions: false });
     const location = fetchResult.getAllHeaders()['Location'];
     if (!!location) {
       throw new Error(`Redirected to '${location}'.`);

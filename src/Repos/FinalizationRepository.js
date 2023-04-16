@@ -2,7 +2,7 @@ class FinalizationRepository {
   /** @param { string } spreadsheetId */
   constructor(spreadsheetId) {
     this._mainSheetName = 'finSheet';
-    this._sheet = () => SpreadsheetApp.openById(spreadsheetId).getSheetByName(this._mainSheetName);
+    this._sheet = SpreadsheetApp.openById(spreadsheetId).getSheetByName(this._mainSheetName);
   }
 
   /** @param { {key: string, value: string}[] } items */
