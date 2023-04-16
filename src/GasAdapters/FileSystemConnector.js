@@ -1,61 +1,79 @@
 class FileSystemConnector {
   constructor() {
+    /** @type { DriveApp.Folder } */
+    this._htmlsFolder = null;
+
     this._config = {
-      folderId: '1hYJbORnlJuw416mwWBTAjZd03aT1-cYx',
+      folderId: Constants.rawFilesFolderId(),
+      rawFilesRetentionPeriodSecs: Constants.rawFilesRetentionPeriodSecs(),
     }
   }
 
-  getFilesWithModificationDates() {
+  /** @param { string } continuationToken
+   *  @returns { DriveApp.FileIterator } */
+  getOldFiles(continuationToken) {
     const htmlsFolder = this._getHtmlsFolder();
-    const files = htmlsFolder.getFiles();
 
-    const obj = [];
-    while (files.hasNext()) {
-      const file = files.next();
-
-      obj.push({
-        fileId: file.getId(),
-        modifiedAt: file.getLastUpdated(),
-      });
+    let iterator;
+    if (!!continuationToken) {
+      console.log('continuationToken received. Trying to restore the iterator.');
+      try {
+        const prevIterator = DriveApp.continueFileIterator(continuationToken);
+        if (prevIterator.hasNext()) {
+          iterator = prevIterator;
+        }
+      } catch (error) {
+        console.log(`Iterator restoring error: ${error}.`);
+      }
     }
 
-    return obj;
+    if (!iterator) {
+      const criticalDate = new Date(new Date().getTime() - this._config.rawFilesRetentionPeriodSecs * 1000);
+      const query = `modifiedDate < '${criticalDate.toISOString()}'`;
+      iterator = htmlsFolder.searchFiles(query);
+
+      console.log('New iterator created.');
+    }
+
+    return iterator;
   }
 
   /**
-   * @param {string} fileName
-   * @param {string} text
-   * @returns {string} fileId
+   * @param { string } fileName
+   * @param { string } text
+   * @returns { string } fileId
    */
   createFile(fileName, text) {
     const htmlsFolder = this._getHtmlsFolder();
 
-    const fileId = htmlsFolder.createFile(fileName, text).getId();
+    const compressedFileName = fileName + '.gz';
+    console.info(`Creating file '${compressedFileName}'...`);
+
+    const blob = Utilities.newBlob(text);
+    const compressedBlob = Utilities.gzip(blob, compressedFileName);
+    const fileId = htmlsFolder.createFile(compressedBlob).getId();
 
     return fileId;
   }
 
   /**
-   * @param {string} fileId
-   * @param {string} text
-   */
-  writeAllText(fileId, text) {
-    DriveApp
-      .getFileById(fileId)
-      .setContent(text);
-  }
-
-  /**
-   * @param {string} fileId
-   * @returns {string} content
+   * @param { string } fileId
+   * @returns { string } content
    */
   readAllText(fileId) {
-    return DriveApp
-      .getFileById(fileId)
-      .getBlob()
-      .getDataAsString();
+    const file = DriveApp.getFileById(fileId);
+
+    const compressedBlob = file.getBlob();
+    const actualBlob = Utilities.ungzip(compressedBlob);
+
+    return actualBlob.getDataAsString();
   }
 
+  clearTrashBin() {
+    Drive.Files.emptyTrash();
+  }
+
+  /** @returns { DriveApp.Folder } */
   _getHtmlsFolder() {
     if (!this._htmlsFolder) {
       this._htmlsFolder = DriveApp.getFolderById(this._config.folderId);

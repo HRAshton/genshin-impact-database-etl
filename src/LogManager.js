@@ -1,10 +1,20 @@
 class LogManager {
-  constructor(dbConnector) {
-    this.dbConnector = dbConnector;
+  /** @param { FileSystemConnector } fileSystemConnector */
+  constructor(fileSystemConnector) {
+    this._fileSystemConnector = fileSystemConnector;
   }
 
-  saveLog(startTime) {
+  /** @param { Date } startTime
+   *  @param { string } serviceName
+   */
+  saveLog(startTime, serviceName) {
     const log = Logger.getLog();
-    this.dbConnector.saveLog(startTime, log);
+    const folder = DriveApp.getFolderById(Constants.logsFolderId());
+    const fileName = `${serviceName}_${startTime.toISOString()}.log`;
+
+    const rawBlob = Utilities.newBlob(log, 'text/plain', fileName);
+    const compressedBlob = Utilities.gzip(rawBlob, fileName + '.gz');
+
+    folder.createFile(compressedBlob);
   }
 }

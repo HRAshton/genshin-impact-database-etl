@@ -1,15 +1,29 @@
+async function FetchingServiceTests() {
+  const fetchingService = new FetchingService();
+  console.log(await fetchingService.fetchAsync2('https://genshin.honeyhunterworld.com/hs_40/?lang=EN'));
+}
+
 class FetchingService {
   constructor() {
-    this.callsTimeoutMs = 500;
-    this.lastRequestTimestamp = new Date().getTime();
+    this._callsTimeoutMs = Constants.httpRequestsTimeoutMs();
+    this._lastRequestTimestamp = new Date().getTime();
   }
 
+  //** @returns { Promise<string> } */
   async fetchAsync(url) {
     const timestamp = new Date().getTime();
-    const timeToWait = this.callsTimeoutMs - (timestamp - this.lastRequestTimestamp);
+    const timeToWait = this._callsTimeoutMs - (timestamp - this._lastRequestTimestamp);
     Utilities.sleep(Math.max(timeToWait, 0));
-    this.lastRequestTimestamp = timestamp;
+    this._lastRequestTimestamp = timestamp;
 
-    return new Promise(resolve => resolve(UrlFetchApp.fetch(url).getContentText()));
+    const fetchResult = UrlFetchApp.fetch(url, { 'followRedirects': false, 'muteHttpExceptions': false });
+    const location = fetchResult.getAllHeaders()['Location'];
+    if (!!location) {
+      throw new Error(`Redirected to '${location}'.`);
+    }
+
+    const htmlBody = fetchResult.getContentText();
+
+    return Promise.resolve(htmlBody);
   }
 }
