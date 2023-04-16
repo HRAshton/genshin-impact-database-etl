@@ -1,16 +1,24 @@
 {
-  "timeZone": "Asia/Tbilisi",
-  "exceptionLogging": "STACKDRIVER",
-  "runtimeVersion": "V8",
+  "timeZone": "Etc/UTC",
   "dependencies": {
     "libraries": [
       {
         "userSymbol": "GenshinHoneyHunterWorldParser",
-        "libraryId": "1XhgxaIk43X6bN7QjRaS2-Out2MHebPHXXNx76PODQvTKX-ZE12ofSeqp",
-        "version": "8"
+        "version": "1",
+        "libraryId": "1MQcLPOjKaM5XbLkiYs9V04JACafpzT7AXL9_0TGmcRPUWgcR9ZI8xrmf",
+        "developmentMode": false
+      }
+    ],
+    "enabledAdvancedServices": [
+      {
+        "userSymbol": "Drive",
+        "version": "v2",
+        "serviceId": "drive"
       }
     ]
   },
+  "exceptionLogging": "STACKDRIVER",
+  "runtimeVersion": "V8",
   "webapp": {
     "executeAs": "USER_DEPLOYING",
     "access": "ANYONE_ANONYMOUS"
