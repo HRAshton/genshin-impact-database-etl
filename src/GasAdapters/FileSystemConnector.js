@@ -6,7 +6,7 @@ class FileSystemConnector {
     this._config = {
       folderId: Constants.rawFilesFolderId(),
       rawFilesRetentionPeriodSecs: Constants.rawFilesRetentionPeriodSecs(),
-    }
+    };
   }
 
   /** @param { string } continuationToken
@@ -15,7 +15,7 @@ class FileSystemConnector {
     const htmlsFolder = this._getHtmlsFolder();
 
     let iterator;
-    if (!!continuationToken) {
+    if (continuationToken) {
       console.log('continuationToken received. Trying to restore the iterator.');
       try {
         const prevIterator = DriveApp.continueFileIterator(continuationToken);
@@ -46,7 +46,7 @@ class FileSystemConnector {
   createFile(fileName, text) {
     const htmlsFolder = this._getHtmlsFolder();
 
-    const compressedFileName = fileName + '.gz';
+    const compressedFileName = `${fileName}.gz`;
     console.info(`Creating file '${compressedFileName}'...`);
 
     const blob = Utilities.newBlob(text);

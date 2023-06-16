@@ -10,7 +10,7 @@ class ParsedFilesRepository {
   getParsedHtmlFiles() {
     this._lock.waitLock(Constants.scriptTimeoutMs());
     const filesData = this._sheet.getRange('A2:B').getValues()
-      .map(val => ({
+      .map((val) => ({
         url: val[0],
         fileId: val[1],
       }));
@@ -30,7 +30,7 @@ class ParsedFilesRepository {
     const existingRow = Helpers.getRowByText(sheet.getRange('A2:A'), url);
 
     let modifiedRow;
-    if (!!existingRow) {
+    if (existingRow) {
       modifiedRow = existingRow;
 
       sheet
@@ -63,7 +63,7 @@ class ParsedFilesRepository {
     const notes = this._sheet
       .getRange('D2:D')
       .getNotes()
-      .map(notes => notes[0]);
+      .map((notes) => notes[0]);
 
     this._lock.releaseLock();
     return notes;

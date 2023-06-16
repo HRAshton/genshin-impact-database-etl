@@ -13,7 +13,7 @@ class LogManager {
     const fileName = `${serviceName}_${startTime.toISOString()}.log`;
 
     const rawBlob = Utilities.newBlob(log, 'text/plain', fileName);
-    const compressedBlob = Utilities.gzip(rawBlob, fileName + '.gz');
+    const compressedBlob = Utilities.gzip(rawBlob, `${fileName}.gz`);
 
     folder.createFile(compressedBlob);
   }

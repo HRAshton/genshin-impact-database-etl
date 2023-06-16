@@ -3,17 +3,17 @@ function do_nothing() {
 }
 
 function removeFile() {
-  Drive.Files.emptyTrash()
+  Drive.Files.emptyTrash();
 }
 
 function clearfyParsedSheet() {
   for (const langData of Object.values(Constants.supportedLangs())) {
-    //if (langData.parsedSheetId != '1D8rF03TXcBxiYYZ5naYGFrLEk9Gfw1O4PTX5PS9rPLk') continue;
+    // if (langData.parsedSheetId != '1D8rF03TXcBxiYYZ5naYGFrLEk9Gfw1O4PTX5PS9rPLk') continue;
 
     const parsedSheet = SpreadsheetApp.openById(langData.parsedSheetId).getSheets()[0];
     const range = parsedSheet.getRange('A:B');
     const values = range.getValues().map((x, i) => ({ row: i + 1, ul: x[0], fileId: x[1] }));
-    const empty = values.filter(x => !x.ul || !x.fileId);
+    const empty = values.filter((x) => !x.ul || !x.fileId);
 
     for (const row of empty.reverse()) {
       parsedSheet.deleteRow(row.row);
@@ -40,11 +40,11 @@ function addUrlColumnToParsedTable() {
     const range = parsedSheet.getRange('A2:B');
     const values = range.getValues();
     for (const value of values) {
-      const rawRow = rawFiles.find(x => x[1] === value[1]);
+      const rawRow = rawFiles.find((x) => x[1] === value[1]);
       value[0] = rawRow ? rawRow[0] : '';
     }
 
-    const t = values.filter(x => !!x[0]);
+    const t = values.filter((x) => !!x[0]);
 
     range.setValues(values);
     Logger.log(values[0][0]);
@@ -83,8 +83,8 @@ function addParsedColumnToRawTable() {
     rawSheet.getRange('E1').setValue('parsed');
     rawSheet.setColumnWidth(5, 51);
 
-    const parsedSheet = SpreadsheetApp.openById(langData.parsedSheetId).getSheets()[0]
-    const parsedFiles = new Set(parsedSheet.getRange('A:A').getValues().map(x => x[0]));
+    const parsedSheet = SpreadsheetApp.openById(langData.parsedSheetId).getSheets()[0];
+    const parsedFiles = new Set(parsedSheet.getRange('A:A').getValues().map((x) => x[0]));
 
     const rawRange = rawSheet.getRange('A2:F');
     const values = rawRange.getValues();
@@ -102,13 +102,13 @@ function printUnknownColumns() {
   const sheet = spreadsheet.getSheetByName('Logs');
   const cells = sheet.getRange('A2:A').getNotes();
   const logs = cells
-    .map(row => row[0])
+    .map((row) => row[0])
     .join('\n')
     .split('\n');
 
   const unexpectedColumnLogs = logs
-    .filter(log => log.includes('Unexpected column name'))
-    .map(x => x.split('Unexpected column name')[1]);
+    .filter((log) => log.includes('Unexpected column name'))
+    .map((x) => x.split('Unexpected column name')[1]);
 
   console.warn(Array.from(new Set(unexpectedColumnLogs)));
 }
@@ -122,7 +122,7 @@ function expandSheets() {
   for (const lang of Object.keys(Constants.supportedLangs())) {
     const src = DriveApp.getFileById('15-8cEEvxCaeb2vCbdNh_Qp3cKwSlxg2nqgAVtCIZ04Q');
     const dst = DriveApp.getFolderById('17rJISRy-FcRpBKpJQU61cy46B5sugSBs');
-    const file = src.makeCopy('RAW ' + lang + ' :: Genshin Impact DB Parsed', dst);
+    const file = src.makeCopy(`RAW ${lang} :: Genshin Impact DB Parsed`, dst);
     Logger.log([file.getId(), lang]);
   }
 }
@@ -134,8 +134,7 @@ function clearSheets() {
     sheet.getSheetByName('main').getRange('A2:C').clearNote();
     try {
       sheet.getSheetByName('main').deleteRows(2, sheet.getSheetByName('main').getMaxRows() - 2);
-    }
-    catch {
+    } catch {
 
     }
   }
@@ -145,16 +144,16 @@ function fillSheets() {
   for (const lang of Object.keys(Constants.supportedLangs())) {
     const langData = Constants.supportedLangs()[lang];
     const sheet = SpreadsheetApp.openById(langData.rawSheetId);
-    sheet.getRange('A2:E2').setValues([['/hs_40/?lang=' + lang, '', '', '', new Date().toISOString()]])
+    sheet.getRange('A2:E2').setValues([[`/hs_40/?lang=${lang}`, '', '', '', new Date().toISOString()]]);
   }
 }
 
 function testGzip() {
-  var r = DriveApp.getFolderById('1FpnRg7guRdOs8kJZv2sxUC2ybNaKDkcu').getFiles();
+  const r = DriveApp.getFolderById('1FpnRg7guRdOs8kJZv2sxUC2ybNaKDkcu').getFiles();
   while (r.hasNext()) {
-    var t = r.next()
+    const t = r.next();
     const rawBlob = t.getBlob();
-    Logger.log([rawBlob.getBytes().length, Utilities.gzip(rawBlob).getBytes().length])
+    Logger.log([rawBlob.getBytes().length, Utilities.gzip(rawBlob).getBytes().length]);
   }
 }
 
@@ -163,16 +162,16 @@ function getLogsStats() {
   const list = [];
   while (t.hasNext()) {
     const file = t.next();
-    list.push([new Date().toISOString(), file.getDateCreated().getTime(), file.getSize()])
-    console.log([new Date().toISOString(), list.length])
+    list.push([new Date().toISOString(), file.getDateCreated().getTime(), file.getSize()]);
+    console.log([new Date().toISOString(), list.length]);
   }
 
-  DriveApp.createFile('logsStats.csv', list.map(x => x.join(',')).join(`\n`));
+  DriveApp.createFile('logsStats.csv', list.map((x) => x.join(',')).join('\n'));
 }
 
 function packLogs() {
   const folder = DriveApp.getFolderById('1WfETeFgi5x58v29pHBaZx43e-X9ESz3V');
-  const t = folder.searchFiles(`mimeType = 'text/plain'`);
+  const t = folder.searchFiles('mimeType = \'text/plain\'');
   let i = 0;
   while (t.hasNext()) {
     i++;
@@ -182,9 +181,9 @@ function packLogs() {
       continue;
     }
 
-    Logger.log('Packing log file ' + name);
+    Logger.log(`Packing log file ${name}`);
     const blob = Utilities.newBlob(file.getBlob().getBytes(), 'text/plain', name);
-    const cBlob = Utilities.gzip(blob, name + '.gz');
+    const cBlob = Utilities.gzip(blob, `${name}.gz`);
     folder.createFile(cBlob);
     file.setTrashed(true);
   }
@@ -204,12 +203,12 @@ function deleteBadUrls() {
     const sheet = SpreadsheetApp.openById(langData.rawSheetId).getSheets()[0];
     const t = sheet.getRange('A:A').getValues()
       .map((val, i) => ({ url: val[0], row: i + 1, id: val[0].split('/')[1] }))
-      .filter(x => x.row > 1);
-    const bad = t.filter(x => !x.id.match(idRegex)).sort((a, b) => b.row - a.row);
+      .filter((x) => x.row > 1);
+    const bad = t.filter((x) => !x.id.match(idRegex)).sort((a, b) => b.row - a.row);
 
     console.log(bad.length);
     for (const y of bad) {
-      sheet.deleteRow(y.row)
+      sheet.deleteRow(y.row);
     }
   }
 }

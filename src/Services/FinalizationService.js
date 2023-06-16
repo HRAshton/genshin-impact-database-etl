@@ -35,8 +35,8 @@ class FinalizationService {
 
     console.log('Saving...');
     const pairs = items
-      .map(item => ({
-        key: `${this._lang}/${item['Id']}`,
+      .map((item) => ({
+        key: `${this._lang}/${item.Id}`,
         value: JSON.stringify(item),
       }));
 
@@ -63,19 +63,19 @@ class FinalizationService {
       }
 
       const obj = JSON.parse(json);
-      if (!obj || !obj['Id'] || !obj['Name']) {
+      if (!obj || !obj.Id || !obj.Name) {
         console.info(`Item with index=${i} has no id.`);
         continue;
       }
 
       const item = {
-        'Id': obj['Id'],
-        'Name': obj['Name'],
-        'Main': obj['Main'] || {},
-        'Metadata': obj['Metadata'],
-      }
+        Id: obj.Id,
+        Name: obj.Name,
+        Main: obj.Main || {},
+        Metadata: obj.Metadata,
+      };
 
-      const tables = obj['Tables'];
+      const tables = obj.Tables;
       for (const tableData of tables || []) {
         const { key, values } = this._getRelations(tableData, tables.length);
 
@@ -89,15 +89,15 @@ class FinalizationService {
   }
 
   _getRelations(tableData, numberOfTables) {
-    const key = tableData['Path'].map(x => x['Name']);
+    const key = tableData.Path.map((x) => x.Name);
     if (!key[0]) {
       GenshinHoneyHunterWorldParser.assert(numberOfTables === 1, 'Undefined keys allowed only in list tables.');
-      key[0] = 'List'
+      key[0] = 'List';
     }
 
-    const headers = tableData['Headers'];
+    const headers = tableData.Headers;
     const values = [];
-    for (const row of tableData['Rows']) {
+    for (const row of tableData.Rows) {
       const value = {};
 
       for (let colIndex = 0; colIndex < headers.length; colIndex++) {
@@ -117,7 +117,8 @@ class FinalizationService {
     const lastKey = keys.pop();
     const lastObj = keys.reduce(
       (obj, key) => obj[key] = obj[key] || {},
-      obj);
+      obj,
+    );
 
     lastObj[lastKey] = value;
   }

@@ -51,11 +51,10 @@ class ExtractService {
    *  @returns { {url: string, fileId: string, modifiedAt: string}[] }
    */
   _sortAndFilterPagesByActuality(allKnownPages) {
-    const cacheUnvalidatedDateTime =
-      new Date(new Date().getTime() - this._config.urlReloadPeriodSecs * 1000).toISOString();
+    const cacheUnvalidatedDateTime = new Date(new Date().getTime() - this._config.urlReloadPeriodSecs * 1000).toISOString();
 
     const pagesToFetch = allKnownPages
-      .filter(pair => !pair.modifiedAt || pair.modifiedAt < cacheUnvalidatedDateTime)
+      .filter((pair) => !pair.modifiedAt || pair.modifiedAt < cacheUnvalidatedDateTime)
       .sort((p1, p2) => p1.modifiedAt.localeCompare(p2.modifiedAt));
 
     return pagesToFetch;
@@ -71,7 +70,7 @@ class ExtractService {
         break;
       }
 
-      let { url } = pagesToFetch[i];
+      const { url } = pagesToFetch[i];
       console.log(`Fetching ${url} (${i + 1} / ${pagesToFetch.length}).`);
 
       const { html, status } = await this._fetchHtmlAsync(url);
@@ -94,7 +93,7 @@ class ExtractService {
     }
   }
 
-  /** @param { string } url 
+  /** @param { string } url
    *  @returns { Promise<{html: string, status: string}> }
    */
   async _fetchHtmlAsync(url) {
@@ -104,7 +103,7 @@ class ExtractService {
         status: 'OK',
       };
     } catch (e) {
-      console.warn('Error: ' + e);
+      console.warn(`Error: ${e}`);
 
       return {
         html: '',
@@ -123,7 +122,7 @@ class ExtractService {
     }
 
     const content = html ?? '';
-    const fileName = url.replace(/[<>:"\/\\|?*]/g, '_') + '.html';
+    const fileName = `${url.replace(/[<>:"\/\\|?*]/g, '_')}.html`;
 
     return this._fileSystemConnector.createFile(fileName, content);
   }

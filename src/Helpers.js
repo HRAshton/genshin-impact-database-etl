@@ -23,7 +23,7 @@ class Helpers {
     const absPeriod = Math.trunc(absDateMinutes / rotationPeriod);
 
     const langs = Object.keys(Constants.supportedLangs());
-    const periodIndex = !!overrideLang
+    const periodIndex = overrideLang
       ? langs.indexOf(overrideLang)
       : absPeriod % langs.length;
     const lang = langs[periodIndex];
@@ -46,8 +46,7 @@ class Helpers {
     for (let retry = 1; retry <= times; retry++) {
       try {
         return action();
-      }
-      catch (ex) {
+      } catch (ex) {
         if (retry === times) {
           throw ex;
         }

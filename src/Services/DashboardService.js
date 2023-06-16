@@ -65,33 +65,32 @@ class DashboardService {
     const repo = new RawFilesRepository(sheetId);
     const allData = repo.getKnownPages();
     const sortedData = allData.sort((a, b) => a.modifiedAt.localeCompare(b.modifiedAt));
-    const filteredData = sortedData.filter(x => !!x.modifiedAt);
+    const filteredData = sortedData.filter((x) => !!x.modifiedAt);
 
-    const cacheUnvalidatedDateTime =
-      new Date(new Date().getTime() - Constants.urlReloadPeriodSecs() * 1000).toISOString();
+    const cacheUnvalidatedDateTime = new Date(new Date().getTime() - Constants.urlReloadPeriodSecs() * 1000).toISOString();
 
     return {
       files: allData.length,
-      empty: allData.filter(x => !x.modifiedAt).length,
-      outdated: filteredData.filter(x => x.modifiedAt < cacheUnvalidatedDateTime).length,
-      actual: filteredData.filter(x => x.modifiedAt >= cacheUnvalidatedDateTime).length,
+      empty: allData.filter((x) => !x.modifiedAt).length,
+      outdated: filteredData.filter((x) => x.modifiedAt < cacheUnvalidatedDateTime).length,
+      actual: filteredData.filter((x) => x.modifiedAt >= cacheUnvalidatedDateTime).length,
       oldest: new Date(filteredData[0].modifiedAt),
       newest: new Date(filteredData[filteredData.length - 1].modifiedAt),
       median: new Date(filteredData[Math.round(filteredData.length / 2)].modifiedAt),
-    }
+    };
   }
 
   getTransformData(sheetId) {
     const repo = new ParsedFilesRepository(sheetId);
     const total = repo.getParsedHtmlFiles().length;
-    const successful = repo.getAllParsedJsons().filter(json => json.includes('"Id":')).length;
+    const successful = repo.getAllParsedJsons().filter((json) => json.includes('"Id":')).length;
     const unsuccessful = total - successful;
 
     return {
       total,
       successful,
       unsuccessful,
-    }
+    };
   }
 
   getFinalizationData(sheetId) {
@@ -99,7 +98,7 @@ class DashboardService {
     const allData = repo.getAllKeys().length;
     return {
       total: allData,
-    }
+    };
   }
 
   /** @param { Date } startTime */

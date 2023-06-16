@@ -26,7 +26,7 @@ class MaintenanceService {
     this.MAINTENANCE_SERVICE_OLD_FILES_CONTINUATION_TOKEN_PROPERTY_KEY = 'MAINTENANCE_SERVICE_OLD_FILES_CONTINUATION_TOKEN_PROPERTY_KEY';
     this._config = {
       scriptTimeoutMs: Constants.scriptTimeoutMs(),
-    }
+    };
   }
 
   run() {
@@ -79,8 +79,9 @@ class MaintenanceService {
         .setProperty(this.MAINTENANCE_SERVICE_OLD_FILES_CONTINUATION_TOKEN_PROPERTY_KEY, existingFiles.getContinuationToken());
 
       console.log(
-        `File '${fileId}' is obsolete and will be deleted. ` +
-        `Name='${file.getName()}' CreatedAt='${file.getDateCreated().toISOString()}'.`);
+        `File '${fileId}' is obsolete and will be deleted. `
+        + `Name='${file.getName()}' CreatedAt='${file.getDateCreated().toISOString()}'.`,
+      );
       file.setTrashed(true);
       deleted++;
     }
@@ -101,7 +102,7 @@ class MaintenanceService {
       const langData = Constants.supportedLangs()[lang];
       const rawFilesRepository = new RawFilesRepository(langData.rawSheetId);
 
-      const files = rawFilesRepository.getActualHtmlFiles().map(x => x.fileId);
+      const files = rawFilesRepository.getActualHtmlFiles().map((x) => x.fileId);
       knownFilesList.push(...files);
     }
 

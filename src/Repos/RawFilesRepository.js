@@ -8,12 +8,12 @@ class RawFilesRepository {
   /** @returns { {url: string, fileId: string, modifiedAt: string }[] } */
   getKnownPages() {
     const pairs = this._sheet.getRange('A2:C').getValues()
-      .map(val => ({
+      .map((val) => ({
         url: val[0],
         fileId: val[1],
         modifiedAt: val[2],
       }))
-      .filter(val => !!val.url);
+      .filter((val) => !!val.url);
 
     return pairs;
   }
@@ -21,8 +21,8 @@ class RawFilesRepository {
   /** @returns { string[] } */
   getKnownUrls() {
     const urls = this._sheet.getRange('A2:A').getValues()
-      .map(x => x[0])
-      .filter(val => !!val);
+      .map((x) => x[0])
+      .filter((val) => !!val);
 
     return urls;
   }
@@ -30,13 +30,13 @@ class RawFilesRepository {
   /** @returns { { url: string, fileId: string, modifiedAt: string, status: string }[] } */
   getActualHtmlFiles() {
     const fileIds = this._sheet.getRange('A2:D').getValues()
-      .map(val => ({
+      .map((val) => ({
         url: val[0],
         fileId: val[1],
         modifiedAt: val[2],
         status: val[3],
       }))
-      .filter(val => !!val.fileId)
+      .filter((val) => !!val.fileId);
 
     return fileIds;
   }
@@ -45,7 +45,7 @@ class RawFilesRepository {
    * @param { {url: string, createdAt: string}[] } cells
    */
   addUrls(cells) {
-    const cellsArr = cells.map(cellData => [
+    const cellsArr = cells.map((cellData) => [
       cellData.url,
       '',
       '',

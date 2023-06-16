@@ -43,12 +43,12 @@ class TransformService {
     const startTime = new Date();
 
     const existingHtmlsMeta = this._rawFilesRepository.getActualHtmlFiles();
-    const existingJsonsMeta = this._parsedFilesRepository.getParsedHtmlFiles()
+    const existingJsonsMeta = this._parsedFilesRepository.getParsedHtmlFiles();
     console.info(`Found '${existingHtmlsMeta.length}' htmls, '${existingJsonsMeta.length}' jsons.`);
 
     const pagesToProcess = existingHtmlsMeta
-      .filter(data => data.status === 'OK'
-        && !existingJsonsMeta.some(ex => ex.fileId === data.fileId && ex.url === data.url));
+      .filter((data) => data.status === 'OK'
+        && !existingJsonsMeta.some((ex) => ex.fileId === data.fileId && ex.url === data.url));
     console.info(`Found '${pagesToProcess.length}' unprocessed pages.`);
 
     this._saveNavbarContent(pagesToProcess[0]);
@@ -78,17 +78,17 @@ class TransformService {
       Id: '_internal_navbar',
       Name: '_internal_navbar',
       Items: parsingResult
-        .map(url => url.split('/')[1])
-        .map(id => ({
+        .map((url) => url.split('/')[1])
+        .map((id) => ({
           Id: id,
           Name: id,
         })),
-    }
+    };
 
     const json = JSON.stringify(item);
 
     console.info(`Saving '_internal_navbar' (${fileId}).`);
-    this._parsedFilesRepository.saveParsingResult("_internal_navbar", fileId, json, modifiedAt);
+    this._parsedFilesRepository.saveParsingResult('_internal_navbar', fileId, json, modifiedAt);
   }
 
   /** @param { Date } startTime
@@ -104,7 +104,7 @@ class TransformService {
       console.log(`Parsing '${fileId}' (${i + 1} / ${pagesToProcess.length}).`);
 
       const parsingResult = this._parse(fileId);
-      if (!parsingResult['Id']) {
+      if (!parsingResult.Id) {
         console.warn('Unable to parse file.');
       }
 
@@ -126,14 +126,14 @@ class TransformService {
       console.log(`Parsing '${fileId}'.`);
       const parsingResult = this._pageParser.parse(html);
       if (!parsingResult) {
-        throw new Error('Empty result received.')
+        throw new Error('Empty result received.');
       }
 
       return parsingResult;
     } catch (e) {
-      console.warn('Error: ' + e);
+      console.warn(`Error: ${e}`);
 
-      return { 'EtlError': 'Unable to fetch or parse data.' };
+      return { EtlError: 'Unable to fetch or parse data.' };
     }
   }
 

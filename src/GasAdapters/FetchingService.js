@@ -9,7 +9,7 @@ class FetchingService {
     this._lastRequestTimestamp = new Date().getTime();
   }
 
-  //** @returns { Promise<string> } */
+  //* * @returns { Promise<string> } */
   async fetchAsync(url) {
     const timestamp = new Date().getTime();
     const timeToWait = this._callsTimeoutMs - (timestamp - this._lastRequestTimestamp);
@@ -17,8 +17,8 @@ class FetchingService {
     this._lastRequestTimestamp = timestamp;
 
     const fetchResult = UrlFetchApp.fetch(url, { followRedirects: false, muteHttpExceptions: false });
-    const location = fetchResult.getAllHeaders()['Location'];
-    if (!!location) {
+    const location = fetchResult.getAllHeaders().Location;
+    if (location) {
       throw new Error(`Redirected to '${location}'.`);
     }
 

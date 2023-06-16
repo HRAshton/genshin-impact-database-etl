@@ -9,7 +9,9 @@
 const doGet = (event = {}) => {
   console.info('Request received.');
 
-  const { action = 'getByIds', ids, locale, api_version = 'v1' } = event.parameter;
+  const {
+    action = 'getByIds', ids, locale, api_version = 'v1',
+  } = event.parameter;
   const filedIds = ids?.toLowerCase() || '';
   const fixedLocale = locale?.toUpperCase() || '';
   validate(action, ids, fixedLocale, api_version);
@@ -22,7 +24,7 @@ const doGet = (event = {}) => {
   let result;
   switch (action) {
     case 'getByIds':
-      const keys = filedIds.split(',').map(id => fixedLocale + '/' + id);
+      const keys = filedIds.split(',').map((id) => `${fixedLocale}/${id}`);
       result = finalizationRepository.getByIds(keys);
       break;
 
@@ -44,7 +46,7 @@ function validate(action, ids, locale, api_version) {
   }
 
   if (!ids || !ids.length) {
-    throw new Error(`Parameter should not be empty: ids.`);
+    throw new Error('Parameter should not be empty: ids.');
   }
 
   if (action !== 'getByIds') {

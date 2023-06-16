@@ -42,15 +42,15 @@ class BackpropagationService {
     const urlsFromJsons = this._getUrlsFromJsons(jsons);
     const urlsToAdd = [...urlsFromJsons, ...urlsFromOtherLangs]
       .filter((item, i, arr) => arr.indexOf(item) === i)
-      .filter(url => !knownUrls.has(url));
+      .filter((url) => !knownUrls.has(url));
     console.log(`${urlsToAdd.length} new urls found.`);
     if (!urlsToAdd.length) {
-      console.info(`No new urls added.`);
+      console.info('No new urls added.');
       return;
     }
 
     const createdAt = startTime.toISOString();
-    const cells = urlsToAdd.map(url => ({ url, createdAt }));
+    const cells = urlsToAdd.map((url) => ({ url, createdAt }));
 
     this._rawFilesRepository.addUrls(cells);
     console.info(`${urlsToAdd.length} new urls added.`);
@@ -62,13 +62,13 @@ class BackpropagationService {
       const langData = Constants.supportedLangs()[lang];
       const rawFilesRepository = new RawFilesRepository(langData.rawSheetId);
       const langUrls = rawFilesRepository.getKnownUrls();
-      const truncatedUrls = langUrls.map(url => url.split('=')[0]);
+      const truncatedUrls = langUrls.map((url) => url.split('=')[0]);
 
       urls.push(...truncatedUrls);
       console.log(`Collected ${langUrls.length} urls from ${lang}.`);
     }
 
-    const uniqueUrls = new Set(urls.map(url => url + '=' + this._lang));
+    const uniqueUrls = new Set(urls.map((url) => `${url}=${this._lang}`));
 
     return uniqueUrls;
   }
@@ -93,7 +93,7 @@ class BackpropagationService {
 
       const item = JSON.parse(json);
       const entityIds = this._getEntityIds(item);
-      const filteredIds = entityIds.filter(id => id.match(idRegex)); // todo
+      const filteredIds = entityIds.filter((id) => id.match(idRegex)); // todo
       for (const id of filteredIds) {
         const url = `/${id}/?lang=${this._lang}`;
 

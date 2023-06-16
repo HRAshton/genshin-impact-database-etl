@@ -37,6 +37,6 @@ class DashboardRepository {
     const cells = langs.map((langRow, i) => [date, langRow[0], ...numbers[i]]);
     console.log(cells);
 
-    cells.forEach(row => histSheet.appendRow(row));
+    cells.forEach((row) => histSheet.appendRow(row));
   }
 }
