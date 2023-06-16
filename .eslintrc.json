@@ -1,0 +1,49 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "googleappsscript/googleappsscript": true,
+        "jest": true
+    },
+    "extends": "airbnb-base",
+    "overrides": [
+    ],
+    "parserOptions": {
+        "ecmaVersion": "latest"
+    },
+    "rules": {
+        "no-underscore-dangle": "off",
+        "no-console": "off",
+        "class-methods-use-this": "off",
+        "no-continue": "off",
+        "no-restricted-syntax": "off"
+    },
+    "plugins": [
+        "googleappsscript",
+        "jest"
+    ],
+    "globals": {
+        "Cheerio": "readonly",
+        "assert": "readonly",
+        "getNavbarParser": "readonly",
+        "getPageParser": "readonly",
+        "Elements": "readonly",
+        "Weekdays": "readonly",
+        "asser": "readonly",
+        "globalRegister": "readonly",
+        "ParserHelpers": "readonly",
+        "RowSpanManager": "readonly",
+        "ValueTransformer": "readonly",
+        "MetadataModel": "readonly",
+        "NamedEntityModelBase": "readonly",
+        "ParsingResultModel": "readonly",
+        "SectionModel": "readonly",
+        "TableModel": "readonly",
+        "NavBarParser": "readonly",
+        "PageParser": "readonly",
+        "TableParser": "readonly",
+        "JsonTableParser": "readonly",
+        "SimpleTableParser": "readonly",
+        "TableParserBase": "readonly"
+    }
+}

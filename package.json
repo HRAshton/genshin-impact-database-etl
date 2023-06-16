@@ -1,0 +1,28 @@
+{
+    "name": "genshin-impact-database-etl",
+    "version": "3.1",
+    "scripts": {
+        "lint": "eslint .",
+        "lint-fix": "eslint . --fix",
+        "pull": "git diff --exit-code && clasp pull",
+        "push": "clasp push"
+    },
+    "description": "GAS project for filling Genshin Impact Database.",
+    "keywords": [],
+    "author": "HRAshton",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/HRAshton/genshin-impact-database-etl.git"
+    },
+    "devDependencies": {
+        "@types/jest": "^29.5.2",
+        "eslint": "^8.40.0",
+        "eslint-config-airbnb-base": "^15.0.0",
+        "eslint-plugin-googleappsscript": "^1.0.4",
+        "eslint-plugin-import": "^2.27.5",
+        "eslint-plugin-jest": "^27.2.1",
+        "jest": "^29.5.0",
+        "node-fetch": "^2.6.11"
+    }
+}
