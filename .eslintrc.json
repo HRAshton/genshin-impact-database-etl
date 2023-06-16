@@ -23,27 +23,5 @@
         "jest"
     ],
     "globals": {
-        "Cheerio": "readonly",
-        "assert": "readonly",
-        "getNavbarParser": "readonly",
-        "getPageParser": "readonly",
-        "Elements": "readonly",
-        "Weekdays": "readonly",
-        "asser": "readonly",
-        "globalRegister": "readonly",
-        "ParserHelpers": "readonly",
-        "RowSpanManager": "readonly",
-        "ValueTransformer": "readonly",
-        "MetadataModel": "readonly",
-        "NamedEntityModelBase": "readonly",
-        "ParsingResultModel": "readonly",
-        "SectionModel": "readonly",
-        "TableModel": "readonly",
-        "NavBarParser": "readonly",
-        "PageParser": "readonly",
-        "TableParser": "readonly",
-        "JsonTableParser": "readonly",
-        "SimpleTableParser": "readonly",
-        "TableParserBase": "readonly"
     }
 }
