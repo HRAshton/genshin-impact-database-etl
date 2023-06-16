@@ -9,19 +9,40 @@ function DashboardService_tests() {
 }
 
 class DashboardService {
+  /** @param { FetchingService } fetchingService
+   *  @param { RawFilesRepository } rawFilesRepository
+   *  @param { FileSystemConnector } fileSystemConnector
+   *  @param { LogManager } logManager
+   */
+  constructor() {
+    this._config = {
+      scriptTimeoutMs: Constants.scriptTimeoutMs(),
+    };
+  }
+
   run() {
-    const data = this.fetchData();
+    const startTime = new Date();
+    const data = this.fetchData(startTime);
     console.log(data);
+    if (this._isTimedOut(startTime)) {
+      console.error('Timeout.');
+      return;
+    }
 
     this._sheet = new DashboardRepository('15naKUcGFb6XsmGx-0MLP5C4UVqgEMudjq4iFHkKlGDw');
     this._sheet.saveData(data);
     // this._sheet.moveStats();
   }
 
-  fetchData() {
+  fetchData(startTime) {
     const currentLang = Helpers.getLang(new Date()).lang;
     const allStats = [];
     for (const [langCode, langData] of Object.entries(Constants.supportedLangs())) {
+      if (this._isTimedOut(startTime)) {
+        console.error('Timeout.');
+        return;
+      }
+
       const extractData = this.getExtractData(langData.rawSheetId);
       const transformData = this.getTransformData(langData.parsedSheetId);
       const finalizationData = this.getFinalizationData(langData.finSheetId);
@@ -79,5 +100,10 @@ class DashboardService {
     return {
       total: allData,
     }
+  }
+
+  /** @param { Date } startTime */
+  _isTimedOut(startTime) {
+    return (new Date() - startTime) > this._config.scriptTimeoutMs;
   }
 }
