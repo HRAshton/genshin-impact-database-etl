@@ -1,32 +1,19 @@
-function TransformService_tests() {
-  const langData = Helpers.getLang(new Date(), 'RU');
-  Logger.log(`Transform job started for lang '${langData.lang}'`);
-
-  try {
-    const fileSystemConnector = new FileSystemConnector();
-    const logManager = new LogManager(fileSystemConnector);
-    const rawFilesRepository = new RawFilesRepository(langData.rawSheetId);
-    const parsedFilesRepository = new ParsedFilesRepository(langData.parsedSheetId);
-    const pageParser = GenshinHoneyHunterWorldParser.getPageParser();
-    const navBarParser = GenshinHoneyHunterWorldParser.getNavbarParser();
-    const transformService = new TransformService(rawFilesRepository, parsedFilesRepository, fileSystemConnector, pageParser, navBarParser, logManager);
-
-    transformService.transform();
-  } catch (ex) {
-    Logger.log(ex);
-    throw ex;
-  }
-}
-
 class TransformService {
   /** @param { RawFilesRepository } rawFilesRepository
-  *   @param { ParsedFilesRepository } parsedFilesRepository
-  *   @param { FileSystemConnector } fileSystemConnector
-  *   @param { PageParser } pageParser
-  *   @param { NavBarParser } navBarParser
-  *   @param { LogManager } logManager
-  */
-  constructor(rawFilesRepository, parsedFilesRepository, fileSystemConnector, pageParser, navBarParser, logManager) {
+   *   @param { ParsedFilesRepository } parsedFilesRepository
+   *   @param { FileSystemConnector } fileSystemConnector
+   *   @param { PageParser } pageParser
+   *   @param { NavBarParser } navBarParser
+   *   @param { LogManager } logManager
+   */
+  constructor(
+    rawFilesRepository,
+    parsedFilesRepository,
+    fileSystemConnector,
+    pageParser,
+    navBarParser,
+    logManager,
+  ) {
     this._rawFilesRepository = rawFilesRepository;
     this._parsedFilesRepository = parsedFilesRepository;
     this._fileSystemConnector = fileSystemConnector;
@@ -94,7 +81,7 @@ class TransformService {
   /** @param { Date } startTime
    *  @param { {fileId: string; modifiedAt: string; status: string}[] } pagesToProcess */
   _processPages(startTime, pagesToProcess) {
-    for (let i = 0; i < pagesToProcess.length; i++) {
+    for (let i = 0; i < pagesToProcess.length; i += 1) {
       if (this._isTimedOut(startTime)) {
         console.info('Break due to timeout.');
         break;

@@ -1,24 +1,7 @@
-function MaintenanceService_tests() {
-  try {
-    const langData = Helpers.getLang(new Date());
-    console.info(`Maintenance job started for lang '${langData.lang}'`);
-
-    const fileSystemConnector = new FileSystemConnector();
-    const logManager = new LogManager(fileSystemConnector);
-    const parsedFilesRepository = new ParsedFilesRepository(langData.parsedSheetId);
-    const maintenanceService = new MaintenanceService(fileSystemConnector, logManager, parsedFilesRepository);
-
-    maintenanceService.run();
-  } catch (ex) {
-    console.error(ex);
-    throw ex;
-  }
-}
-
 class MaintenanceService {
   /** @param { FileSystemConnector } fileSystemConnector
-  *   @param { LogManager } logManager
-  */
+   *   @param { LogManager } logManager
+   */
   constructor(fileSystemConnector, logManager) {
     this._logManager = logManager;
     this._fileSystemConnector = fileSystemConnector;
@@ -61,11 +44,14 @@ class MaintenanceService {
         break;
       }
 
-      if (++i % 250 === 0) {
+      i += 1;
+      if (i % 250 === 0) {
         console.log(`Processing file ${i}. Refrashing continuationToken...`);
 
-        PropertiesService.getScriptProperties()
-          .setProperty(this.MAINTENANCE_SERVICE_OLD_FILES_CONTINUATION_TOKEN_PROPERTY_KEY, existingFiles.getContinuationToken());
+        PropertiesService.getScriptProperties().setProperty(
+          this.MAINTENANCE_SERVICE_OLD_FILES_CONTINUATION_TOKEN_PROPERTY_KEY,
+          existingFiles.getContinuationToken(),
+        );
       }
 
       const file = existingFiles.next();
@@ -75,15 +61,17 @@ class MaintenanceService {
         continue;
       }
 
-      PropertiesService.getScriptProperties()
-        .setProperty(this.MAINTENANCE_SERVICE_OLD_FILES_CONTINUATION_TOKEN_PROPERTY_KEY, existingFiles.getContinuationToken());
+      PropertiesService.getScriptProperties().setProperty(
+        this.MAINTENANCE_SERVICE_OLD_FILES_CONTINUATION_TOKEN_PROPERTY_KEY,
+        existingFiles.getContinuationToken(),
+      );
 
       console.log(
         `File '${fileId}' is obsolete and will be deleted. `
         + `Name='${file.getName()}' CreatedAt='${file.getDateCreated().toISOString()}'.`,
       );
       file.setTrashed(true);
-      deleted++;
+      deleted += 1;
     }
 
     const key = this.MAINTENANCE_SERVICE_OLD_FILES_CONTINUATION_TOKEN_PROPERTY_KEY;
@@ -96,7 +84,7 @@ class MaintenanceService {
   /** @returns { Set<string> } */
   _getKnownFiles() {
     const knownFilesList = [];
-    for (const lang in Constants.supportedLangs()) {
+    for (const lang of Object.keys(Constants.supportedLangs())) {
       console.log(`Collecting files for '${lang}'.`);
 
       const langData = Constants.supportedLangs()[lang];

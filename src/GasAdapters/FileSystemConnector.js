@@ -28,7 +28,8 @@ class FileSystemConnector {
     }
 
     if (!iterator) {
-      const criticalDate = new Date(new Date().getTime() - this._config.rawFilesRetentionPeriodSecs * 1000);
+      const { rawFilesRetentionPeriodSecs } = this._config;
+      const criticalDate = new Date(new Date().getTime() - rawFilesRetentionPeriodSecs * 1000);
       const query = `modifiedDate < '${criticalDate.toISOString()}'`;
       iterator = htmlsFolder.searchFiles(query);
 

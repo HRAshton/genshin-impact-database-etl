@@ -1,3 +1,9 @@
+/* This is a worksheet for all the functions that are not used in the main flow.
+ * It is used for one-time operations, like adding a column to a table, etc.
+ */
+
+/* eslint-disable */
+
 function do_nothing() {
   throw new Error('Do not call me.');
 }

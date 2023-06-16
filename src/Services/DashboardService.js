@@ -1,13 +1,3 @@
-function DashboardService_tests() {
-  try {
-    const dashboardService = new DashboardService();
-    dashboardService.run();
-  } catch (ex) {
-    console.error(ex);
-    throw ex;
-  }
-}
-
 class DashboardService {
   /** @param { FetchingService } fetchingService
    *  @param { RawFilesRepository } rawFilesRepository
@@ -40,7 +30,7 @@ class DashboardService {
     for (const [langCode, langData] of Object.entries(Constants.supportedLangs())) {
       if (this._isTimedOut(startTime)) {
         console.error('Timeout.');
-        return;
+        return undefined;
       }
 
       const extractData = this.getExtractData(langData.rawSheetId);
@@ -67,7 +57,8 @@ class DashboardService {
     const sortedData = allData.sort((a, b) => a.modifiedAt.localeCompare(b.modifiedAt));
     const filteredData = sortedData.filter((x) => !!x.modifiedAt);
 
-    const cacheUnvalidatedDateTime = new Date(new Date().getTime() - Constants.urlReloadPeriodSecs() * 1000).toISOString();
+    const cacheUnvalidatedDateSecs = new Date().getTime() - Constants.urlReloadPeriodSecs() * 1000;
+    const cacheUnvalidatedDateTime = new Date(cacheUnvalidatedDateSecs).toISOString();
 
     return {
       files: allData.length,

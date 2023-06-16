@@ -1,21 +1,3 @@
-async function ExtractService_tests() {
-  try {
-    const langData = Helpers.getLang(new Date(), 'DE');
-    console.info(`Extract job started for lang '${langData.lang}'`);
-
-    const fetchingService = new FetchingService();
-    const rawFilesRepository = new RawFilesRepository(langData.rawSheetId);
-    const fileSystemConnector = new FileSystemConnector();
-    const logManager = new LogManager(fileSystemConnector);
-    const extractService = new ExtractService(fetchingService, rawFilesRepository, fileSystemConnector, logManager);
-
-    await extractService.extractAsync();
-  } catch (ex) {
-    console.error(ex);
-    throw ex;
-  }
-}
-
 class ExtractService {
   /** @param { FetchingService } fetchingService
    *  @param { RawFilesRepository } rawFilesRepository
@@ -51,7 +33,8 @@ class ExtractService {
    *  @returns { {url: string, fileId: string, modifiedAt: string}[] }
    */
   _sortAndFilterPagesByActuality(allKnownPages) {
-    const cacheUnvalidatedDateTime = new Date(new Date().getTime() - this._config.urlReloadPeriodSecs * 1000).toISOString();
+    const cacheUnvalidatedDateMs = new Date().getTime() - this._config.urlReloadPeriodSecs * 1000;
+    const cacheUnvalidatedDateTime = new Date(cacheUnvalidatedDateMs).toISOString();
 
     const pagesToFetch = allKnownPages
       .filter((pair) => !pair.modifiedAt || pair.modifiedAt < cacheUnvalidatedDateTime)
@@ -64,7 +47,7 @@ class ExtractService {
    *  @param { Date } startTime
    */
   async _extractUrlsAsync(pagesToFetch, startTime) {
-    for (let i = 0; i < pagesToFetch.length; i++) {
+    for (let i = 0; i < pagesToFetch.length; i += 1) {
       if (this._isTimedOut(startTime)) {
         console.info('Break due to timeout.');
         break;
@@ -73,6 +56,7 @@ class ExtractService {
       const { url } = pagesToFetch[i];
       console.log(`Fetching ${url} (${i + 1} / ${pagesToFetch.length}).`);
 
+      // eslint-disable-next-line no-await-in-loop -- pages should be fetched one by one by design
       const { html, status } = await this._fetchHtmlAsync(url);
       if (status.includes('Service invoked too many times for one day: urlfetch')) {
         console.info('Break due to quota.');
@@ -122,7 +106,7 @@ class ExtractService {
     }
 
     const content = html ?? '';
-    const fileName = `${url.replace(/[<>:"\/\\|?*]/g, '_')}.html`;
+    const fileName = `${url.replace(/[<>:"/\\|?*]/g, '_')}.html`;
 
     return this._fileSystemConnector.createFile(fileName, content);
   }

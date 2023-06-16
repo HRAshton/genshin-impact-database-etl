@@ -43,7 +43,7 @@ class Helpers {
    *  @returns T
    */
   static repeat(action, times) {
-    for (let retry = 1; retry <= times; retry++) {
+    for (let retry = 1; retry <= times; retry += 1) {
       try {
         return action();
       } catch (ex) {
@@ -54,6 +54,8 @@ class Helpers {
         console.warn({ text: 'Repeat exception', exception: ex });
       }
     }
+
+    throw new Error('Unreachable code');
   }
 }
 

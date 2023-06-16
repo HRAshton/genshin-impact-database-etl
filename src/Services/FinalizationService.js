@@ -1,16 +1,3 @@
-function FinalizationService_tests() {
-  const langData = Helpers.getLang(new Date(), 'RU');
-  console.info(`Finalization job started for lang '${langData.lang}'`);
-
-  const fileSystemConnector = new FileSystemConnector();
-  const logManager = new LogManager(fileSystemConnector);
-  const parsedFilesRepository = new ParsedFilesRepository(langData.parsedSheetId);
-  const finalizationRepository = new FinalizationRepository(langData.finSheetId);
-  const finalizationService = new FinalizationService(langData.lang, parsedFilesRepository, finalizationRepository, logManager);
-
-  finalizationService.run();
-}
-
 class FinalizationService {
   /** @param { stiring } lang
   *   @param { ParsedFilesRepository } parsedFilesRepository
@@ -51,7 +38,7 @@ class FinalizationService {
    */
   _parseItems(jsons) {
     const items = [];
-    for (let i = 0; i < jsons.length; i++) {
+    for (let i = 0; i < jsons.length; i += 1) {
       const json = jsons[i];
       if (!json) {
         console.info(`Item with index=${i} skipped.`);
@@ -100,7 +87,7 @@ class FinalizationService {
     for (const row of tableData.Rows) {
       const value = {};
 
-      for (let colIndex = 0; colIndex < headers.length; colIndex++) {
+      for (let colIndex = 0; colIndex < headers.length; colIndex += 1) {
         const header = headers[colIndex];
         value[header] = row[colIndex];
       }
@@ -116,7 +103,7 @@ class FinalizationService {
     const keys = [...path];
     const lastKey = keys.pop();
     const lastObj = keys.reduce(
-      (obj, key) => obj[key] = obj[key] || {},
+      (item, key) => item[key] = item[key] || {},
       obj,
     );
 

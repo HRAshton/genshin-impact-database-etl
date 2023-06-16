@@ -1,3 +1,11 @@
+/** This is the main entry point for all triggers. */
+
+// noinspection JSUnusedGlobalSymbols
+
+/* eslint-disable camelcase */
+
+/* eslint-disable no-unused-vars */
+
 async function run_extract() {
   try {
     const langData = Helpers.getLang(new Date());
@@ -7,7 +15,12 @@ async function run_extract() {
     const rawFilesRepository = new RawFilesRepository(langData.rawSheetId);
     const fileSystemConnector = new FileSystemConnector();
     const logManager = new LogManager(fileSystemConnector);
-    const extractService = new ExtractService(fetchingService, rawFilesRepository, fileSystemConnector, logManager);
+    const extractService = new ExtractService(
+      fetchingService,
+      rawFilesRepository,
+      fileSystemConnector,
+      logManager,
+    );
 
     await extractService.extractAsync();
   } catch (ex) {
@@ -25,7 +38,12 @@ async function run_extract_ru() {
     const rawFilesRepository = new RawFilesRepository(langData.rawSheetId);
     const fileSystemConnector = new FileSystemConnector();
     const logManager = new LogManager(fileSystemConnector);
-    const extractService = new ExtractService(fetchingService, rawFilesRepository, fileSystemConnector, logManager);
+    const extractService = new ExtractService(
+      fetchingService,
+      rawFilesRepository,
+      fileSystemConnector,
+      logManager,
+    );
 
     await extractService.extractAsync();
   } catch (ex) {
@@ -45,7 +63,14 @@ function run_transform_ru() {
     const parsedFilesRepository = new ParsedFilesRepository(langData.parsedSheetId);
     const pageParser = GenshinHoneyHunterWorldParser.getPageParser();
     const navBarParser = GenshinHoneyHunterWorldParser.getNavbarParser();
-    const transformService = new TransformService(rawFilesRepository, parsedFilesRepository, fileSystemConnector, pageParser, navBarParser, logManager);
+    const transformService = new TransformService(
+      rawFilesRepository,
+      parsedFilesRepository,
+      fileSystemConnector,
+      pageParser,
+      navBarParser,
+      logManager,
+    );
 
     transformService.transform();
   } catch (ex) {
@@ -65,7 +90,14 @@ function run_transform() {
     const parsedFilesRepository = new ParsedFilesRepository(langData.parsedSheetId);
     const pageParser = GenshinHoneyHunterWorldParser.getPageParser();
     const navBarParser = GenshinHoneyHunterWorldParser.getNavbarParser();
-    const transformService = new TransformService(rawFilesRepository, parsedFilesRepository, fileSystemConnector, pageParser, navBarParser, logManager);
+    const transformService = new TransformService(
+      rawFilesRepository,
+      parsedFilesRepository,
+      fileSystemConnector,
+      pageParser,
+      navBarParser,
+      logManager,
+    );
 
     transformService.transform();
   } catch (ex) {
@@ -82,7 +114,12 @@ function run_finalization() {
   const logManager = new LogManager(fileSystemConnector);
   const parsedFilesRepository = new ParsedFilesRepository(langData.parsedSheetId);
   const finalizationRepository = new FinalizationRepository(langData.finSheetId);
-  const finalizationService = new FinalizationService(langData.lang, parsedFilesRepository, finalizationRepository, logManager);
+  const finalizationService = new FinalizationService(
+    langData.lang,
+    parsedFilesRepository,
+    finalizationRepository,
+    logManager,
+  );
 
   finalizationService.run();
 }
@@ -95,7 +132,13 @@ function run_backpropagation() {
   const rawFilesRepository = new RawFilesRepository(langData.rawSheetId);
   const parsedFilesRepository = new ParsedFilesRepository(langData.parsedSheetId);
   const logManager = new LogManager(fileSystemConnector);
-  const backpropagationService = new BackpropagationService(langData.lang, rawFilesRepository, parsedFilesRepository, fileSystemConnector, logManager);
+  const backpropagationService = new BackpropagationService(
+    langData.lang,
+    rawFilesRepository,
+    parsedFilesRepository,
+    fileSystemConnector,
+    logManager,
+  );
 
   backpropagationService.run();
 }

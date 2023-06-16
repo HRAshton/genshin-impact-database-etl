@@ -31,7 +31,9 @@ class Constants {
     return 15;
   }
 
-  /** @returns { {[lang: string]: { rawSheetId: string, parsedSheetId: string, finSheetId: string }} } */
+  /** @returns {
+   *    {[lang: string]: { rawSheetId: string, parsedSheetId: string, finSheetId: string }}
+   *  } */
   static supportedLangs() {
     return {
       CHS: { rawSheetId: '1KKGBjiheUdhMhCcvzZ8jQ2aXRzZQaA9cwdGsrW8ohCk', parsedSheetId: '1x-vbSJ8IfEQD6DigmNKjaVo9YW1n9LquqDv164k3co4', finSheetId: '1XMFUw8k5vFO_p0IEhr2RiRcRXQ3wd-mn5i2F6MO-r2U' },

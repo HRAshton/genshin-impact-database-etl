@@ -1,16 +1,3 @@
-function BackpropagationService_tests() {
-  const langData = Helpers.getLang(new Date(), 'IT');
-  console.info(`Backpropagation job started for lang '${langData.lang}'`);
-
-  const fileSystemConnector = new FileSystemConnector();
-  const rawFilesRepository = new RawFilesRepository(langData.rawSheetId);
-  const parsedFilesRepository = new ParsedFilesRepository(langData.parsedSheetId);
-  const logManager = new LogManager(fileSystemConnector);
-  const backpropagationService = new BackpropagationService(langData.lang, rawFilesRepository, parsedFilesRepository, fileSystemConnector, logManager);
-
-  backpropagationService.run();
-}
-
 class BackpropagationService {
   /** @param { RawFilesRepository } rawFilesRepository
   *   @param { FileSystemConnector } fileSystemConnector
@@ -81,7 +68,7 @@ class BackpropagationService {
     const idRegex = /^[0-9a-z_]+$/;
 
     const urls = new Set();
-    for (let i = 0; i < jsons.length; i++) {
+    for (let i = 0; i < jsons.length; i += 1) {
       if (i % 1000 === 0) {
         console.log(`Processing json ${i + 1} / ${jsons.length}...`);
       }

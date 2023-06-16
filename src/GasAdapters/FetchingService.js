@@ -1,8 +1,3 @@
-async function FetchingServiceTests() {
-  const fetchingService = new FetchingService();
-  console.log(await fetchingService.fetchAsync2('https://genshin.honeyhunterworld.com/hs_40/?lang=EN'));
-}
-
 class FetchingService {
   constructor() {
     this._callsTimeoutMs = Constants.httpRequestsTimeoutMs();
@@ -16,7 +11,10 @@ class FetchingService {
     Utilities.sleep(Math.max(timeToWait, 0));
     this._lastRequestTimestamp = timestamp;
 
-    const fetchResult = UrlFetchApp.fetch(url, { followRedirects: false, muteHttpExceptions: false });
+    const fetchResult = UrlFetchApp.fetch(url, {
+      followRedirects: false,
+      muteHttpExceptions: false,
+    });
     const location = fetchResult.getAllHeaders().Location;
     if (location) {
       throw new Error(`Redirected to '${location}'.`);

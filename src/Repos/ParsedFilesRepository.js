@@ -63,7 +63,7 @@ class ParsedFilesRepository {
     const notes = this._sheet
       .getRange('D2:D')
       .getNotes()
-      .map((notes) => notes[0]);
+      .map((rowNodes) => rowNodes[0]);
 
     this._lock.releaseLock();
     return notes;
