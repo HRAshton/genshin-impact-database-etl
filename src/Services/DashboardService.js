@@ -106,3 +106,5 @@ class DashboardService {
     return (new Date() - startTime) > this._config.scriptTimeoutMs;
   }
 }
+
+globalRegister(DashboardService);

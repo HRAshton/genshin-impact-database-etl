@@ -51,3 +51,5 @@ class FinalizationRepository {
     return result;
   }
 }
+
+globalRegister(FinalizationRepository);

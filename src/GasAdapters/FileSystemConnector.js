@@ -82,3 +82,5 @@ class FileSystemConnector {
     return this._htmlsFolder;
   }
 }
+
+globalRegister(FileSystemConnector);

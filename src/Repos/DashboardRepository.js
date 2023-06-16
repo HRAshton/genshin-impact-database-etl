@@ -40,3 +40,5 @@ class DashboardRepository {
     cells.forEach((row) => histSheet.appendRow(row));
   }
 }
+
+globalRegister(DashboardRepository);

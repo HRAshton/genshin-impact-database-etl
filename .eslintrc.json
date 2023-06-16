@@ -23,5 +23,22 @@
         "jest"
     ],
     "globals": {
+        "globalRegister": "readonly",
+        "FetchingService": "readonly",
+        "FileSystemConnector": "readonly",
+        "DashboardRepository": "readonly",
+        "FinalizationRepository": "readonly",
+        "ParsedFilesRepository": "readonly",
+        "RawFilesRepository": "readonly",
+        "BackpropagationService": "readonly",
+        "DashboardService": "readonly",
+        "ExtractService": "readonly",
+        "FinalizationService": "readonly",
+        "MaintenanceService": "readonly",
+        "TransformService": "readonly",
+        "GenshinHoneyHunterWorldParser": "readonly",
+        "Helpers": "readonly",
+        "LogManager": "readonly",
+        "Constants": "readonly"
     }
 }

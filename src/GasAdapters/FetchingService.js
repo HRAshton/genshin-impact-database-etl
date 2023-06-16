@@ -27,3 +27,5 @@ class FetchingService {
     return Promise.resolve(htmlBody);
   }
 }
+
+globalRegister(FetchingService);

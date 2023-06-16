@@ -18,3 +18,5 @@ class LogManager {
     folder.createFile(compressedBlob);
   }
 }
+
+globalRegister(LogManager);

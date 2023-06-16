@@ -16,6 +16,7 @@
         "url": "git+https://github.com/HRAshton/genshin-impact-database-etl.git"
     },
     "devDependencies": {
+        "@types/google-apps-script": "^1.0.64",
         "@types/jest": "^29.5.2",
         "eslint": "^8.40.0",
         "eslint-config-airbnb-base": "^15.0.0",

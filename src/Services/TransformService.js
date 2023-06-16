@@ -142,3 +142,5 @@ class TransformService {
     return (new Date() - startTime) > this._config.scriptTimeoutMs;
   }
 }
+
+globalRegister(TransformService);

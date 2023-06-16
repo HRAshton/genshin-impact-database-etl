@@ -123,3 +123,5 @@ class FinalizationService {
     lastObj[lastKey] = value;
   }
 }
+
+globalRegister(FinalizationService);

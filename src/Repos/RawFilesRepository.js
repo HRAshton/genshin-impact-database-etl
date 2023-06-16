@@ -73,3 +73,5 @@ class RawFilesRepository {
       .setValues([[fileId, modifiedAt, status]]);
   }
 }
+
+globalRegister(RawFilesRepository);

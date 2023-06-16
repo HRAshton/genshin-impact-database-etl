@@ -88,3 +88,5 @@ class ParsedFilesRepository {
     this._lock.releaseLock();
   }
 }
+
+globalRegister(ParsedFilesRepository);

@@ -52,3 +52,5 @@ class Constants {
     };
   }
 }
+
+globalRegister(Constants);

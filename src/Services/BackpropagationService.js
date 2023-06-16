@@ -126,3 +126,5 @@ class BackpropagationService {
     return entityIds;
   }
 }
+
+globalRegister(BackpropagationService);

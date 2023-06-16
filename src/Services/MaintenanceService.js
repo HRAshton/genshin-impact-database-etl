@@ -114,3 +114,5 @@ class MaintenanceService {
     return (new Date() - startTime) > this._config.scriptTimeoutMs;
   }
 }
+
+globalRegister(MaintenanceService);

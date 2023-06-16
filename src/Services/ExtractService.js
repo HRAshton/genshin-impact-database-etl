@@ -132,3 +132,5 @@ class ExtractService {
     return (new Date() - startTime) > this._config.scriptTimeoutMs;
   }
 }
+
+globalRegister(ExtractService);
