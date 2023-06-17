@@ -1,12 +1,25 @@
+/// <reference path="../typings.d.js" />
+
+'use strict';
+
+/** Stores metadata of raw files in the spreadsheets. */
 class RawFilesRepository {
-  /** @param { string } spreadsheetId */
+  /** Creates a new instance of the RawFilesRepository.
+   * @param { string } spreadsheetId - ID of the spreadsheet.
+   */
   constructor(spreadsheetId) {
     this._mainSheetName = 'main';
     this._sheet = SpreadsheetApp.openById(spreadsheetId).getSheetByName(this._mainSheetName);
+    if (!this._sheet) {
+      throw new Error(`Could not find sheet with name ${this._mainSheetName} in spreadsheet ${spreadsheetId}.`);
+    }
   }
 
-  /** @returns { {url: string, fileId: string, modifiedAt: string }[] } */
+  /** Gets data about the raw HTML files.
+   * @returns { RawHtmlMetaEntry[] }
+   */
   getKnownPages() {
+    /** @type { RawHtmlMetaEntry[] } */
     const pairs = this._sheet.getRange('A2:C').getValues()
       .map((val) => ({
         url: val[0],
@@ -18,8 +31,11 @@ class RawFilesRepository {
     return pairs;
   }
 
-  /** @returns { string[] } */
+  /** Gets all known urls from raw files metadata.
+   * @returns { string[] }
+   */
   getKnownUrls() {
+    /** @type { string[] } */
     const urls = this._sheet.getRange('A2:A').getValues()
       .map((x) => x[0])
       .filter((val) => !!val);
@@ -27,8 +43,11 @@ class RawFilesRepository {
     return urls;
   }
 
-  /** @returns { { url: string, fileId: string, modifiedAt: string, status: string }[] } */
+  /** Gets data about the raw HTML files with fetching statuses.
+   * @returns { RawHtmlMetaWithStatus[] }
+   */
   getActualHtmlFiles() {
+    /** @type { RawHtmlMetaWithStatus[] } */
     const fileIds = this._sheet.getRange('A2:D').getValues()
       .map((val) => ({
         url: val[0],
@@ -41,8 +60,8 @@ class RawFilesRepository {
     return fileIds;
   }
 
-  /** Appends urls.
-   * @param { {url: string, createdAt: string}[] } cells
+  /** Appends urls to the end of the sheet.
+   * @param { NewRawHtmlMetaEntry[] } cells
    */
   addUrls(cells) {
     const cellsArr = cells.map((cellData) => [
@@ -60,13 +79,17 @@ class RawFilesRepository {
   }
 
   /** Saves html.
-   * @param {string} url
-   * @param {string} modifiedAt
-   * @param {string} status
-   * @param {string} fileId
+   * @param { string } url
+   * @param { string } modifiedAt
+   * @param { string } status
+   * @param { string } fileId
+   * @returns { void }
    */
   saveExtractingResult(url, modifiedAt, status, fileId) {
     const row = Helpers.getRowByText(this._sheet.getRange('A2:A'), url);
+    if (!row) {
+      throw new Error(`Could not find row with url ${url}.`);
+    }
 
     this._sheet
       .getRange(row, 2, 1, 3)

@@ -1,10 +1,16 @@
+/// <reference path="../typings.d.js" />
+
+'use strict';
+
+/** This service is responsible for transforming raw HTML files into JSON files. */
 class TransformService {
-  /** @param { RawFilesRepository } rawFilesRepository
-   *   @param { ParsedFilesRepository } parsedFilesRepository
-   *   @param { FileSystemConnector } fileSystemConnector
-   *   @param { PageParser } pageParser
-   *   @param { NavBarParser } navBarParser
-   *   @param { LogManager } logManager
+  /** Creates a new instance of the TransformService.
+   * @param { RawFilesRepository } rawFilesRepository
+   * @param { ParsedFilesRepository } parsedFilesRepository
+   * @param { FileSystemConnector } fileSystemConnector
+   * @param { GenshinHoneyHunterWorldParser.PageParser } pageParser
+   * @param { GenshinHoneyHunterWorldParser.NavBarParser } navBarParser
+   * @param { LogManager } logManager
    */
   constructor(
     rawFilesRepository,
@@ -26,6 +32,9 @@ class TransformService {
     };
   }
 
+  /** Transforms raw HTML files into JSON files.
+   * @returns { void }
+   */
   transform() {
     const startTime = new Date();
 
@@ -44,7 +53,11 @@ class TransformService {
     this._logManager.saveLog(startTime, TransformService.name);
   }
 
-  /** @param { {fileId: string; modifiedAt: string; status: string} } pageToProcess */
+  /** Parses a navigation bar from the given page and saves it to the parsed files repository.
+   * @param { RawHtmlMetaWithStatus } pageToProcess
+   * @returns { void }
+   * @private
+   */
   _saveNavbarContent(pageToProcess) {
     if (!pageToProcess) {
       return;
@@ -61,6 +74,7 @@ class TransformService {
       return;
     }
 
+    /** @type { ParsedNavbarModel } */
     const item = {
       Id: '_internal_navbar',
       Name: '_internal_navbar',
@@ -78,8 +92,12 @@ class TransformService {
     this._parsedFilesRepository.saveParsingResult('_internal_navbar', fileId, json, modifiedAt);
   }
 
-  /** @param { Date } startTime
-   *  @param { {fileId: string; modifiedAt: string; status: string}[] } pagesToProcess */
+  /** Parses all pages from the given array and saves them to the parsed files repository.
+   * @param { Date } startTime
+   * @param { RawHtmlMetaWithStatus[] } pagesToProcess
+   * @returns { void }
+   * @private
+   */
   _processPages(startTime, pagesToProcess) {
     for (let i = 0; i < pagesToProcess.length; i += 1) {
       if (this._isTimedOut(startTime)) {
@@ -102,8 +120,10 @@ class TransformService {
     }
   }
 
-  /** @param { fileId } string
-   *  @returns { object }
+  /** Parses a single page from the given file.
+   * @param { string } fileId - Google Drive file id of the raw file.
+   * @returns { GenshinHoneyHunterWorldParser.ParsingResultModel | ParsingError } - Parsed data.
+   * @private
    */
   _parse(fileId) {
     try {
@@ -124,7 +144,11 @@ class TransformService {
     }
   }
 
-  /** @param { Date } startTime */
+  /** Checks if the script is timed out.
+   * @param { Date } startTime
+   * @returns { boolean }
+   * @private
+   */
   _isTimedOut(startTime) {
     return (new Date() - startTime) > this._config.scriptTimeoutMs;
   }

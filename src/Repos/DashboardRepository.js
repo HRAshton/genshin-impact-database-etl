@@ -1,10 +1,23 @@
+/// <reference path="../typings.d.js" />
+
+'use strict';
+
+/** Stores statistics to the dashboard spreadsheet. */
 class DashboardRepository {
-  /** @param { string } spreadsheetId */
+  /** Creates a new instance of the DashboardRepository.
+   * @param { string } spreadsheetId - ID of the dashboard spreadsheet.
+   */
   constructor(spreadsheetId) {
     this._mainSheetName = 'stats';
     this._sheet = SpreadsheetApp.openById(spreadsheetId).getSheetByName(this._mainSheetName);
+    if (!this._sheet) {
+      throw new Error(`Could not find sheet with name ${this._mainSheetName} in spreadsheet ${spreadsheetId}.`);
+    }
   }
 
+  /** Saves data to the spreadsheet.
+   * @param { DashboardStatisticsEntry[] } data - Data to save.
+   */
   saveData(data) {
     const cells = [];
     for (const langData of data) {
@@ -28,6 +41,7 @@ class DashboardRepository {
     this._sheet.getRange(3, 1, cells.length, cells[0].length).setValues(cells);
   }
 
+  // TODO: Remove
   moveStats() {
     const histSheet = this._sheet.getParent().getSheetByName('history');
     const langs = this._sheet.getRange('A3:A').getValues();

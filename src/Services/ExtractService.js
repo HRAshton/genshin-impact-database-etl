@@ -1,8 +1,14 @@
+/// <reference path="../typings.d.js" />
+
+'use strict';
+
+/** Fetches html files, saves them to the Google Drive and updates the raw files repository. */
 class ExtractService {
-  /** @param { FetchingService } fetchingService
-   *  @param { RawFilesRepository } rawFilesRepository
-   *  @param { FileSystemConnector } fileSystemConnector
-   *  @param { LogManager } logManager
+  /** Creates an instance of ExtractService.
+   * @param { FetchingService } fetchingService
+   * @param { RawFilesRepository } rawFilesRepository
+   * @param { FileSystemConnector } fileSystemConnector
+   * @param { LogManager } logManager
    */
   constructor(fetchingService, rawFilesRepository, fileSystemConnector, logManager) {
     this._fetchingService = fetchingService;
@@ -17,6 +23,9 @@ class ExtractService {
     };
   }
 
+  /** Starts the process of fetching html files.
+   * @returns { Promise<void> }
+   */
   async extractAsync() {
     const startTime = new Date();
 
@@ -29,8 +38,12 @@ class ExtractService {
     this._logManager.saveLog(startTime, ExtractService.name);
   }
 
-  /** @param   { {url: string, fileId: string, modifiedAt: string}[] } allKnownPages
-   *  @returns { {url: string, fileId: string, modifiedAt: string}[] }
+  /** Sorts and filters pages by actuality.
+   * Urls that were modified less than urlReloadPeriodSecs ago are not fetched.
+   * Outdated urls are fetched in order of their modification date (most outdated first).
+   * @param { RawHtmlMetaEntry[] } allKnownPages
+   * @returns { RawHtmlMetaEntry[] }
+   * @private
    */
   _sortAndFilterPagesByActuality(allKnownPages) {
     const cacheUnvalidatedDateMs = new Date().getTime() - this._config.urlReloadPeriodSecs * 1000;
@@ -43,8 +56,10 @@ class ExtractService {
     return pagesToFetch;
   }
 
-  /** @param { {url: string, fileId: string, modifiedAt: string}[] } allKnownPages
-   *  @param { Date } startTime
+  /** Fetches a single html file, saves it to the Google Drive and updates the raw files repository.
+   * @param { RawHtmlMetaEntry[] } pagesToFetch
+   * @param { Date } startTime
+   * @private
    */
   async _extractUrlsAsync(pagesToFetch, startTime) {
     for (let i = 0; i < pagesToFetch.length; i += 1) {
@@ -77,8 +92,10 @@ class ExtractService {
     }
   }
 
-  /** @param { string } url
-   *  @returns { Promise<{html: string, status: string}> }
+  /** Fetches a single html file.
+   * @param { string } url - Url to fetch.
+   * @returns { Promise<{html: string, status: string}> }
+   * @private
    */
   async _fetchHtmlAsync(url) {
     try {
@@ -91,14 +108,16 @@ class ExtractService {
 
       return {
         html: '',
-        status: e.toString(),
+        status: `${e}`,
       };
     }
   }
 
-  /** @param { string } url
-   *  @param { string } html
-   *  @returns { string } Id of existed or created file.
+  /** Saves html to the Google Drive.
+   * @param { string } url
+   * @param { string } html
+   * @returns { string } Id of existed or created file.
+   * @private
    */
   _saveFile(url, html) {
     if (!html) {
@@ -111,7 +130,11 @@ class ExtractService {
     return this._fileSystemConnector.createFile(fileName, content);
   }
 
-  /** @param { Date } startTime */
+  /** Checks if the script is timed out.
+   * @param { Date } startTime
+   * @returns { boolean }
+   * @private
+   */
   _isTimedOut(startTime) {
     return (new Date() - startTime) > this._config.scriptTimeoutMs;
   }

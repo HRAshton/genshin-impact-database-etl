@@ -1,6 +1,12 @@
+/// <reference path="../typings.d.js" />
+
+'use strict';
+
+/** Cleanup files. */
 class MaintenanceService {
-  /** @param { FileSystemConnector } fileSystemConnector
-   *   @param { LogManager } logManager
+  /** Creates an instance of MaintenanceService.
+   * @param { FileSystemConnector } fileSystemConnector
+   * @param { LogManager } logManager
    */
   constructor(fileSystemConnector, logManager) {
     this._logManager = logManager;
@@ -12,12 +18,18 @@ class MaintenanceService {
     };
   }
 
+  /** Starts the process of cleaning up RAW files.
+   * @returns { void }
+   */
   run() {
     const startTime = new Date();
     this._deleteObsoleteRawFiles(startTime);
     this._logManager.saveLog(startTime, MaintenanceService.name);
   }
 
+  /** Clears the trash bin.
+   * @returns { void }
+   */
   clearTrashBin() {
     const startTime = new Date();
 
@@ -46,7 +58,7 @@ class MaintenanceService {
 
       i += 1;
       if (i % 250 === 0) {
-        console.log(`Processing file ${i}. Refrashing continuationToken...`);
+        console.log(`Processing file ${i}. Refreshing continuationToken...`);
 
         PropertiesService.getScriptProperties().setProperty(
           this.MAINTENANCE_SERVICE_OLD_FILES_CONTINUATION_TOKEN_PROPERTY_KEY,
@@ -83,6 +95,7 @@ class MaintenanceService {
 
   /** @returns { Set<string> } */
   _getKnownFiles() {
+    /** @type { string[] } */
     const knownFilesList = [];
     for (const lang of Object.keys(Constants.supportedLangs())) {
       console.log(`Collecting files for '${lang}'.`);
@@ -97,7 +110,11 @@ class MaintenanceService {
     return new Set(knownFilesList);
   }
 
-  /** @param { Date } startTime */
+  /** Checks if the script is timed out.
+   * @param { Date } startTime
+   * @returns { boolean }
+   * @private
+   */
   _isTimedOut(startTime) {
     return (new Date() - startTime) > this._config.scriptTimeoutMs;
   }

@@ -1,8 +1,16 @@
+/// <reference path="../typings.d.js" />
+
+'use strict';
+
+/** Service for backpropagation of URLs from parsing results to raw sheet. */
 class BackpropagationService {
-  /** @param { RawFilesRepository } rawFilesRepository
-  *   @param { FileSystemConnector } fileSystemConnector
-  *   @param { LogManager } logManager
-  */
+  /** Creates an instance of BackpropagationService.
+   * @param { string } lang
+   * @param { RawFilesRepository } rawFilesRepository
+   * @param { ParsedFilesRepository } parsedFilesRepository
+   * @param { FileSystemConnector } fileSystemConnector
+   * @param { LogManager } logManager
+   */
   constructor(lang, rawFilesRepository, parsedFilesRepository, fileSystemConnector, logManager) {
     this._lang = lang;
     this._fileSystemConnector = fileSystemConnector;
@@ -11,13 +19,20 @@ class BackpropagationService {
     this._logManager = logManager;
   }
 
+  /** Registers all urls from all parsed jsons to raw sheet.
+   * @returns { void }
+   */
   run() {
     const startTime = new Date();
     this._registerUrls(startTime);
     this._logManager.saveLog(startTime, BackpropagationService.name);
   }
 
-  /** @param { Date } startTime */
+  /** Collects all urls from all parsed jsons and adds them to raw sheet.
+   * @param { Date } startTime
+   * @returns { void }
+   * @private
+   */
   _registerUrls(startTime) {
     const knownUrls = new Set(this._rawFilesRepository.getKnownUrls());
     console.log(`${knownUrls.size} known urls fetched.`);
@@ -43,6 +58,11 @@ class BackpropagationService {
     console.info(`${urlsToAdd.length} new urls added.`);
   }
 
+  /** Collects all urls from raw sheets.
+   * TODO: Rename.
+   * @returns { Set<string> }
+   * @private
+   */
   _getUrlsFromOtherLangs() {
     const urls = [];
     for (const lang of Object.keys(Constants.supportedLangs())) {
@@ -60,9 +80,10 @@ class BackpropagationService {
     return uniqueUrls;
   }
 
-  /** @param { string[] } jsons
-   *  @param { string } lang
-   *  @returns { string[] }
+  /** Creates a set of URLs from IDs of parsing results.
+   * @param { string[] } jsons - Parsing results in JSON format.
+   * @returns { Set<string> } - Set of URLs for the current language.
+   * @private
    */
   _getUrlsFromJsons(jsons) {
     const idRegex = /^[0-9a-z_]+$/;
@@ -91,8 +112,10 @@ class BackpropagationService {
     return urls;
   }
 
-  /** @param { object } parsingResult
-   *  @returns { string[] }
+  /** Recursively collects all IDs from parsing results.
+   * @param { GenshinHoneyHunterWorldParser.ParsingResultModel } parsingResult
+   * @returns { string[] }
+   * @private
    */
   _getEntityIds(parsingResult) {
     if (!parsingResult || typeof parsingResult !== 'object') {

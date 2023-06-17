@@ -1,6 +1,6 @@
 ﻿root = true
 
-[**.js]
+[{**.js,**.ts}]
 max_line_length = 100
 end_of_line = lf
 indent_style = space

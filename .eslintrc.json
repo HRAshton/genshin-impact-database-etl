@@ -5,8 +5,10 @@
         "googleappsscript/googleappsscript": true,
         "jest": true
     },
-    "extends": "airbnb-base",
-    "overrides": [
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+        "airbnb-base",
+        "plugin:@typescript-eslint/recommended"
     ],
     "parserOptions": {
         "ecmaVersion": "latest"
@@ -16,11 +18,14 @@
         "no-console": "off",
         "class-methods-use-this": "off",
         "no-continue": "off",
-        "no-restricted-syntax": "off"
+        "no-restricted-syntax": "off",
+        "strict": "off",
+        "@typescript-eslint/triple-slash-reference": "off"
     },
     "plugins": [
         "googleappsscript",
-        "jest"
+        "jest",
+        "@typescript-eslint"
     ],
     "globals": {
         "globalRegister": "readonly",
@@ -40,5 +45,6 @@
         "Helpers": "readonly",
         "LogManager": "readonly",
         "Constants": "readonly"
-    }
+    },
+    "root": true
 }

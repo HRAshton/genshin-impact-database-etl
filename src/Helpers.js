@@ -1,6 +1,8 @@
 class Helpers {
-  /** @param { SpreadsheetApp.Range } range
-   *  @param { string } text
+  /** Finds row by text in the specified range.
+   * @param { GoogleAppsScript.Spreadsheet.Range } range
+   * @param { string } text
+   * @returns { number | undefined }
    */
   static getRowByText(range, text) {
     const textFinder = range
@@ -14,9 +16,9 @@ class Helpers {
   }
 
   /** Gets language to process by time.
-   *  @param { Date } startTime.
-   *  @param { string } overrideLang.
-   *  @returns { {lang: string, rawSheetId: string, parsedSheetId: string, finSheetId: string} } */
+   *  @param { Date } startTime
+   *  @param { string? } [overrideLang]
+   *  @returns { SupportedLangsEntry & { lang: string } } */
   static getLang(startTime, overrideLang) {
     const rotationPeriod = Constants.rotationPeriodMinutes();
     const absDateMinutes = startTime.getMinutes() + (startTime.getHours() * 60);
@@ -31,31 +33,10 @@ class Helpers {
     return { lang, ...Constants.supportedLangs()[lang] };
   }
 
-  /** @param { string } langCode.
-   *  @returns { {lang: string, rawSheetId: string, parsedSheetId: string, finSheetId: string} } */
+  /** @param { string } langCode
+   *  @returns { SupportedLangsEntry } */
   static getLangByCode(langCode) {
     return Constants.supportedLangs()[langCode];
-  }
-
-  /** @template T
-   *  @param { () => T } action
-   *  @param { number } times
-   *  @returns T
-   */
-  static repeat(action, times) {
-    for (let retry = 1; retry <= times; retry += 1) {
-      try {
-        return action();
-      } catch (ex) {
-        if (retry === times) {
-          throw ex;
-        }
-
-        console.warn({ text: 'Repeat exception', exception: ex });
-      }
-    }
-
-    throw new Error('Unreachable code');
   }
 }
 

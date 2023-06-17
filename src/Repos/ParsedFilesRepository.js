@@ -1,12 +1,19 @@
+/// <reference path="../typings.d.js" />
+
+'use strict';
+
 class ParsedFilesRepository {
   /** @param { string } spreadsheetId */
   constructor(spreadsheetId) {
     this._lock = LockService.getScriptLock();
     this._mainSheetName = 'main';
     this._sheet = SpreadsheetApp.openById(spreadsheetId).getSheetByName(this._mainSheetName);
+    if (!this._sheet) {
+      throw new Error(`Could not find sheet with name ${this._mainSheetName} in spreadsheet ${spreadsheetId}.`);
+    }
   }
 
-  /** @returns { { url: string, fileId: string }[] } */
+  /** @returns { ParsedFileMeta[] } */
   getParsedHtmlFiles() {
     this._lock.waitLock(Constants.scriptTimeoutMs());
     const filesData = this._sheet.getRange('A2:B').getValues()

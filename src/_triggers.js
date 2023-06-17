@@ -1,10 +1,6 @@
 /** This is the main entry point for all triggers. */
-
 // noinspection JSUnusedGlobalSymbols
-
-/* eslint-disable camelcase */
-
-/* eslint-disable no-unused-vars */
+/* eslint-disable camelcase,no-unused-vars,@typescript-eslint/no-unused-vars */
 
 async function run_extract() {
   try {

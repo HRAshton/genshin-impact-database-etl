@@ -1,6 +1,10 @@
+/// <reference path="../typings.d.js" />
+
+'use strict';
+
 class FileSystemConnector {
   constructor() {
-    /** @type { DriveApp.Folder } */
+    /** @type { GoogleAppsScript.Drive.Folder | null } */
     this._htmlsFolder = null;
 
     this._config = {
@@ -9,8 +13,8 @@ class FileSystemConnector {
     };
   }
 
-  /** @param { string } continuationToken
-   *  @returns { DriveApp.FileIterator } */
+  /** @param { string? } continuationToken
+   *  @returns { GoogleAppsScript.Drive.FileIterator } */
   getOldFiles(continuationToken) {
     const htmlsFolder = this._getHtmlsFolder();
 
@@ -70,11 +74,19 @@ class FileSystemConnector {
     return actualBlob.getDataAsString();
   }
 
+  /** Clears the trash bin.
+   * @returns { void }
+   */
   clearTrashBin() {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore -- It should be provided by AppsScript.
     Drive.Files.emptyTrash();
   }
 
-  /** @returns { DriveApp.Folder } */
+  /** Gets the folder where the RAW files are stored.
+   * @returns { GoogleAppsScript.Drive.Folder }
+   * @private
+   */
   _getHtmlsFolder() {
     if (!this._htmlsFolder) {
       this._htmlsFolder = DriveApp.getFolderById(this._config.folderId);

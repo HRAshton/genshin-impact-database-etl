@@ -1,7 +1,15 @@
+/** Validates request parameters.
+ * @param { string | undefined } action - Action. Options: 'getByIds' (default).
+ * @param { string | undefined } ids - Entity ids (joined by ',').
+ * @param { string | undefined } locale - Language.
+ * @param { string | undefined } apiVersion - Version of API. Options: v1.
+ * @throws { Error } If parameters are invalid.
+ * @returns { void }
+ */
 function validate(action, ids, locale, apiVersion) {
   const allowedLocales = Object.keys(Constants.supportedLangs());
 
-  if (!allowedLocales.includes(locale)) {
+  if (!locale || !allowedLocales.includes(locale)) {
     throw new Error(`Unexpected locale: '${locale}'. Only ${allowedLocales} allowed.`);
   }
 
@@ -20,11 +28,9 @@ function validate(action, ids, locale, apiVersion) {
 
 /**
  * Gets data for entity.
- * @param {string?} event.parameter.action - Action. Options: 'getByIds' (default).
- * @param {string?} event.parameter.ids - Entity ids (joined by ',').
- * @param {string?} event.parameter.locale - Language.
- * @param {string?} event.parameter.api_version - Version of API. Options: v1.
- * @returns {GenshinHoneHunterWorldParser.ParsingResult} - Parsing result.
+ * @param { ApiRequestModel } event - Event.
+ * @returns { GoogleAppsScript.Content.TextOutput }
+ *          Parsing result with a serialized GenshinHoneyHunterWorldParser.ParsingResultModel.
  */
 const doGet = (event = {}) => {
   console.info('Request received.');
@@ -60,7 +66,7 @@ const doGet = (event = {}) => {
     .setMimeType(ContentService.MimeType.JSON);
 };
 
-// eslint-disable-next-line no-unused-vars -- for testing purposes
+// eslint-disable-next-line no-unused-vars,@typescript-eslint/no-unused-vars -- for testing purposes
 function _test() {
   doGet({ parameter: { ids: 'fam_book_family_1006,hs_40', locale: 'FR' } });
 }

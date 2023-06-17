@@ -1,15 +1,20 @@
+/// <reference path="../typings.d.js" />
+
+'use strict';
+
+/** Service for collecting and saving data for the dashboard. */
+// TODO: Add underscore to private methods.
 class DashboardService {
-  /** @param { FetchingService } fetchingService
-   *  @param { RawFilesRepository } rawFilesRepository
-   *  @param { FileSystemConnector } fileSystemConnector
-   *  @param { LogManager } logManager
-   */
+  /** Creates an instance of DashboardService. */
   constructor() {
     this._config = {
       scriptTimeoutMs: Constants.scriptTimeoutMs(),
     };
   }
 
+  /** Collects and saves data for the dashboard.
+   * @returns { void }
+   */
   run() {
     const startTime = new Date();
     const data = this.fetchData(startTime);
@@ -19,11 +24,21 @@ class DashboardService {
       return;
     }
 
+    if (!data) {
+      console.error('Data is undefined.');
+      return;
+    }
+
     this._sheet = new DashboardRepository('15naKUcGFb6XsmGx-0MLP5C4UVqgEMudjq4iFHkKlGDw');
     this._sheet.saveData(data);
     // this._sheet.moveStats();
   }
 
+  /** Collects data for the dashboard.
+   * @param { Date } startTime
+   * @returns { DashboardStatisticsEntry[] | undefined }
+   * @private
+   */
   fetchData(startTime) {
     const currentLang = Helpers.getLang(new Date()).lang;
     const allStats = [];
@@ -51,6 +66,11 @@ class DashboardService {
     return allStats;
   }
 
+  /** Collects data about the raw sheets.
+   * @param { string } sheetId - The ID of the raw repository sheet.
+   * @return { DashboardExtractStatisticsEntry }
+   * @private
+   */
   getExtractData(sheetId) {
     const repo = new RawFilesRepository(sheetId);
     const allData = repo.getKnownPages();
@@ -71,6 +91,11 @@ class DashboardService {
     };
   }
 
+  /** Collects data about the parsed sheets.
+   * @param { string } sheetId - The ID of the parsed repository sheet.
+   * @return { DashboardTransformStatisticsEntry }
+   * @private
+   */
   getTransformData(sheetId) {
     const repo = new ParsedFilesRepository(sheetId);
     const total = repo.getParsedHtmlFiles().length;
@@ -84,6 +109,11 @@ class DashboardService {
     };
   }
 
+  /** Collects data about the finalization sheets.
+   * @param { string } sheetId
+   * @returns { DashboardFinalizationStatisticsEntry }
+   * @private
+   */
   getFinalizationData(sheetId) {
     const repo = new FinalizationRepository(sheetId);
     const allData = repo.getAllKeys().length;
@@ -92,7 +122,11 @@ class DashboardService {
     };
   }
 
-  /** @param { Date } startTime */
+  /** Checks if the script is timed out.
+   * @param { Date } startTime
+   * @returns { boolean }
+   * @private
+   */
   _isTimedOut(startTime) {
     return (new Date() - startTime) > this._config.scriptTimeoutMs;
   }

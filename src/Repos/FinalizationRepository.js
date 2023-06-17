@@ -1,8 +1,15 @@
+/// <reference path="../typings.d.js" />
+
+'use strict';
+
 class FinalizationRepository {
   /** @param { string } spreadsheetId */
   constructor(spreadsheetId) {
     this._mainSheetName = 'finSheet';
     this._sheet = SpreadsheetApp.openById(spreadsheetId).getSheetByName(this._mainSheetName);
+    if (!this._sheet) {
+      throw new Error(`Could not find sheet with name ${this._mainSheetName} in spreadsheet ${spreadsheetId}.`);
+    }
   }
 
   /** @param { {key: string, value: string}[] } items */
