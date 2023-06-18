@@ -1,0 +1,1910 @@
+{
+    "Id": "m_26120301",
+    "Name": "Grounded Hydroshroom",
+    "Main": {
+        "Name": "Grounded Hydroshroom",
+        "Possible Title": "Grounded Hydroshroom",
+        "Sub": "Magical Beasts",
+        "Grade": "Regular",
+        "Possible Name": "Shroom Sentinel, Spore Shepherd, The Shroom Surpassing",
+        "Description": "A mimetic life form made out of spores that has extreme adaptability.This creature may look like a bird, but it cannot fly. Due to the influence of Hydro energies, it is astoundingly agile compared to others of its kind. Some research has inferred that this creature is in fact an aggregation of countless tiny spores rather than a single entity.This creature has a position of command amongst colonies of Fungi and exhibits heightened intelligence to match.",
+        "Image": "/img/m_26120301.webp?x50246"
+    },
+    "Tables": [
+        {
+            "Headers": [
+                "Icon",
+                "Name",
+                "Rarity",
+                "Family",
+                "Drop Level"
+            ],
+            "Rows": [
+                [
+                    "/img/i_2001_35.webp",
+                    {
+                        "Id": "i_2001",
+                        "Name": "Mora"
+                    },
+                    3,
+                    [
+                        {
+                            "Id": "fam_currency",
+                            "Name": "Currency"
+                        }
+                    ],
+                    "0+"
+                ],
+                [
+                    "/img/i_n112062_35.webp",
+                    {
+                        "Id": "i_n112062",
+                        "Name": "Inactivated Fungal Nucleus"
+                    },
+                    2,
+                    [
+                        {
+                            "Id": "fam_wep",
+                            "Name": "Weapon Ascension Item"
+                        },
+                        {
+                            "Id": "fam_wep_secondary",
+                            "Name": "Wep Secondary Ascension Material"
+                        },
+                        {
+                            "Id": "fam_ingredient",
+                            "Name": "Ingredient"
+                        },
+                        {
+                            "Id": "fam_alchemy_ingredient",
+                            "Name": "Alchemy Ingredient"
+                        }
+                    ],
+                    "0+"
+                ],
+                [
+                    "/img/i_n112063_35.webp",
+                    {
+                        "Id": "i_n112063",
+                        "Name": "Dormant Fungal Nucleus"
+                    },
+                    3,
+                    [
+                        {
+                            "Id": "fam_wep",
+                            "Name": "Weapon Ascension Item"
+                        },
+                        {
+                            "Id": "fam_wep_secondary",
+                            "Name": "Wep Secondary Ascension Material"
+                        },
+                        {
+                            "Id": "fam_crafted",
+                            "Name": "Crafted Item"
+                        },
+                        {
+                            "Id": "fam_ingredient",
+                            "Name": "Ingredient"
+                        },
+                        {
+                            "Id": "fam_alchemy_ingredient",
+                            "Name": "Alchemy Ingredient"
+                        }
+                    ],
+                    "40+"
+                ],
+                [
+                    "/img/i_n112064_35.webp",
+                    {
+                        "Id": "i_n112064",
+                        "Name": "Robust Fungal Nucleus"
+                    },
+                    4,
+                    [
+                        {
+                            "Id": "fam_wep",
+                            "Name": "Weapon Ascension Item"
+                        },
+                        {
+                            "Id": "fam_wep_secondary",
+                            "Name": "Wep Secondary Ascension Material"
+                        },
+                        {
+                            "Id": "fam_crafted",
+                            "Name": "Crafted Item"
+                        }
+                    ],
+                    "60+"
+                ],
+                [
+                    "/img/i_n112059_35.webp",
+                    {
+                        "Id": "i_n112059",
+                        "Name": "Fungal Spores"
+                    },
+                    1,
+                    [
+                        {
+                            "Id": "fam_char",
+                            "Name": "Character Ascension Item"
+                        },
+                        {
+                            "Id": "fam_char_common",
+                            "Name": "Char Common Item"
+                        },
+                        {
+                            "Id": "fam_wep",
+                            "Name": "Weapon Ascension Item"
+                        },
+                        {
+                            "Id": "fam_wep_common",
+                            "Name": "Wep Common Item"
+                        },
+                        {
+                            "Id": "fam_talent",
+                            "Name": "Talent Item"
+                        },
+                        {
+                            "Id": "fam_talent_common",
+                            "Name": "Talent Common Item"
+                        },
+                        {
+                            "Id": "fam_ingredient",
+                            "Name": "Ingredient"
+                        },
+                        {
+                            "Id": "fam_alchemy_ingredient",
+                            "Name": "Alchemy Ingredient"
+                        }
+                    ],
+                    "0+"
+                ],
+                [
+                    "/img/i_n112060_35.webp",
+                    {
+                        "Id": "i_n112060",
+                        "Name": "Luminescent Pollen"
+                    },
+                    2,
+                    [
+                        {
+                            "Id": "fam_char",
+                            "Name": "Character Ascension Item"
+                        },
+                        {
+                            "Id": "fam_char_common",
+                            "Name": "Char Common Item"
+                        },
+                        {
+                            "Id": "fam_wep",
+                            "Name": "Weapon Ascension Item"
+                        },
+                        {
+                            "Id": "fam_wep_common",
+                            "Name": "Wep Common Item"
+                        },
+                        {
+                            "Id": "fam_talent",
+                            "Name": "Talent Item"
+                        },
+                        {
+                            "Id": "fam_talent_common",
+                            "Name": "Talent Common Item"
+                        },
+                        {
+                            "Id": "fam_crafted",
+                            "Name": "Crafted Item"
+                        },
+                        {
+                            "Id": "fam_ingredient",
+                            "Name": "Ingredient"
+                        },
+                        {
+                            "Id": "fam_alchemy_ingredient",
+                            "Name": "Alchemy Ingredient"
+                        }
+                    ],
+                    "40+"
+                ],
+                [
+                    "/img/i_n112061_35.webp",
+                    {
+                        "Id": "i_n112061",
+                        "Name": "Crystalline Cyst Dust"
+                    },
+                    3,
+                    [
+                        {
+                            "Id": "fam_char",
+                            "Name": "Character Ascension Item"
+                        },
+                        {
+                            "Id": "fam_char_common",
+                            "Name": "Char Common Item"
+                        },
+                        {
+                            "Id": "fam_wep",
+                            "Name": "Weapon Ascension Item"
+                        },
+                        {
+                            "Id": "fam_wep_common",
+                            "Name": "Wep Common Item"
+                        },
+                        {
+                            "Id": "fam_talent",
+                            "Name": "Talent Item"
+                        },
+                        {
+                            "Id": "fam_talent_common",
+                            "Name": "Talent Common Item"
+                        },
+                        {
+                            "Id": "fam_crafted",
+                            "Name": "Crafted Item"
+                        }
+                    ],
+                    "60+"
+                ]
+            ],
+            "Path": [
+                {
+                    "Id": "drop",
+                    "Name": "Drop"
+                }
+            ]
+        },
+        {
+            "Headers": [
+                "Icon",
+                "Name",
+                "Grade",
+                "Drop"
+            ],
+            "Rows": [
+                [
+                    "/img/m_26090201_100.webp",
+                    {
+                        "Id": "m_26090201",
+                        "Name": "Floating Dendro Fungus"
+                    },
+                    "Regular",
+                    [
+                        {
+                            "Id": "i_2001",
+                            "Name": "Mora"
+                        },
+                        {
+                            "Id": "i_n112062",
+                            "Name": "Inactivated Fungal Nucleus"
+                        },
+                        {
+                            "Id": "i_n112063",
+                            "Name": "Dormant Fungal Nucleus"
+                        },
+                        {
+                            "Id": "i_n112064",
+                            "Name": "Robust Fungal Nucleus"
+                        },
+                        {
+                            "Id": "i_n112059",
+                            "Name": "Fungal Spores"
+                        },
+                        {
+                            "Id": "i_n112060",
+                            "Name": "Luminescent Pollen"
+                        },
+                        {
+                            "Id": "i_n112061",
+                            "Name": "Crystalline Cyst Dust"
+                        }
+                    ]
+                ],
+                [
+                    "/img/m_26090401_100.webp",
+                    {
+                        "Id": "m_26090401",
+                        "Name": "Whirling Electro Fungus"
+                    },
+                    "Regular",
+                    [
+                        {
+                            "Id": "i_2001",
+                            "Name": "Mora"
+                        },
+                        {
+                            "Id": "i_n112062",
+                            "Name": "Inactivated Fungal Nucleus"
+                        },
+                        {
+                            "Id": "i_n112063",
+                            "Name": "Dormant Fungal Nucleus"
+                        },
+                        {
+                            "Id": "i_n112064",
+                            "Name": "Robust Fungal Nucleus"
+                        },
+                        {
+                            "Id": "i_n112059",
+                            "Name": "Fungal Spores"
+                        },
+                        {
+                            "Id": "i_n112060",
+                            "Name": "Luminescent Pollen"
+                        },
+                        {
+                            "Id": "i_n112061",
+                            "Name": "Crystalline Cyst Dust"
+                        }
+                    ]
+                ],
+                [
+                    "/img/m_26090501_100.webp",
+                    {
+                        "Id": "m_26090501",
+                        "Name": "Whirling Cryo Fungus"
+                    },
+                    "Regular",
+                    [
+                        {
+                            "Id": "i_2001",
+                            "Name": "Mora"
+                        },
+                        {
+                            "Id": "i_n112062",
+                            "Name": "Inactivated Fungal Nucleus"
+                        },
+                        {
+                            "Id": "i_n112063",
+                            "Name": "Dormant Fungal Nucleus"
+                        },
+                        {
+                            "Id": "i_n112064",
+                            "Name": "Robust Fungal Nucleus"
+                        },
+                        {
+                            "Id": "i_n112059",
+                            "Name": "Fungal Spores"
+                        },
+                        {
+                            "Id": "i_n112060",
+                            "Name": "Luminescent Pollen"
+                        },
+                        {
+                            "Id": "i_n112061",
+                            "Name": "Crystalline Cyst Dust"
+                        }
+                    ]
+                ],
+                [
+                    "/img/m_26090701_100.webp",
+                    {
+                        "Id": "m_26090701",
+                        "Name": "Stretchy Pyro Fungus"
+                    },
+                    "Regular",
+                    [
+                        {
+                            "Id": "i_2001",
+                            "Name": "Mora"
+                        },
+                        {
+                            "Id": "i_n112062",
+                            "Name": "Inactivated Fungal Nucleus"
+                        },
+                        {
+                            "Id": "i_n112063",
+                            "Name": "Dormant Fungal Nucleus"
+                        },
+                        {
+                            "Id": "i_n112064",
+                            "Name": "Robust Fungal Nucleus"
+                        },
+                        {
+                            "Id": "i_n112059",
+                            "Name": "Fungal Spores"
+                        },
+                        {
+                            "Id": "i_n112060",
+                            "Name": "Luminescent Pollen"
+                        },
+                        {
+                            "Id": "i_n112061",
+                            "Name": "Crystalline Cyst Dust"
+                        }
+                    ]
+                ],
+                [
+                    "/img/m_26090801_100.webp",
+                    {
+                        "Id": "m_26090801",
+                        "Name": "Stretchy Anemo Fungus"
+                    },
+                    "Regular",
+                    [
+                        {
+                            "Id": "i_2001",
+                            "Name": "Mora"
+                        },
+                        {
+                            "Id": "i_n112062",
+                            "Name": "Inactivated Fungal Nucleus"
+                        },
+                        {
+                            "Id": "i_n112063",
+                            "Name": "Dormant Fungal Nucleus"
+                        },
+                        {
+                            "Id": "i_n112064",
+                            "Name": "Robust Fungal Nucleus"
+                        },
+                        {
+                            "Id": "i_n112059",
+                            "Name": "Fungal Spores"
+                        },
+                        {
+                            "Id": "i_n112060",
+                            "Name": "Luminescent Pollen"
+                        },
+                        {
+                            "Id": "i_n112061",
+                            "Name": "Crystalline Cyst Dust"
+                        }
+                    ]
+                ],
+                [
+                    "/img/m_26090901_100.webp",
+                    {
+                        "Id": "m_26090901",
+                        "Name": "Stretchy Geo Fungus"
+                    },
+                    "Regular",
+                    [
+                        {
+                            "Id": "i_2001",
+                            "Name": "Mora"
+                        },
+                        {
+                            "Id": "i_n112062",
+                            "Name": "Inactivated Fungal Nucleus"
+                        },
+                        {
+                            "Id": "i_n112063",
+                            "Name": "Dormant Fungal Nucleus"
+                        },
+                        {
+                            "Id": "i_n112064",
+                            "Name": "Robust Fungal Nucleus"
+                        },
+                        {
+                            "Id": "i_n112059",
+                            "Name": "Fungal Spores"
+                        },
+                        {
+                            "Id": "i_n112060",
+                            "Name": "Luminescent Pollen"
+                        },
+                        {
+                            "Id": "i_n112061",
+                            "Name": "Crystalline Cyst Dust"
+                        }
+                    ]
+                ],
+                [
+                    "/img/m_26120101_100.webp",
+                    {
+                        "Id": "m_26120101",
+                        "Name": "Winged Dendroshroom"
+                    },
+                    "Regular",
+                    [
+                        {
+                            "Id": "i_2001",
+                            "Name": "Mora"
+                        },
+                        {
+                            "Id": "i_n112062",
+                            "Name": "Inactivated Fungal Nucleus"
+                        },
+                        {
+                            "Id": "i_n112063",
+                            "Name": "Dormant Fungal Nucleus"
+                        },
+                        {
+                            "Id": "i_n112064",
+                            "Name": "Robust Fungal Nucleus"
+                        },
+                        {
+                            "Id": "i_n112059",
+                            "Name": "Fungal Spores"
+                        },
+                        {
+                            "Id": "i_n112060",
+                            "Name": "Luminescent Pollen"
+                        },
+                        {
+                            "Id": "i_n112061",
+                            "Name": "Crystalline Cyst Dust"
+                        }
+                    ]
+                ],
+                [
+                    "/img/m_26120201_100.webp",
+                    {
+                        "Id": "m_26120201",
+                        "Name": "Winged Cryoshroom"
+                    },
+                    "Regular",
+                    [
+                        {
+                            "Id": "i_2001",
+                            "Name": "Mora"
+                        },
+                        {
+                            "Id": "i_n112062",
+                            "Name": "Inactivated Fungal Nucleus"
+                        },
+                        {
+                            "Id": "i_n112063",
+                            "Name": "Dormant Fungal Nucleus"
+                        },
+                        {
+                            "Id": "i_n112064",
+                            "Name": "Robust Fungal Nucleus"
+                        },
+                        {
+                            "Id": "i_n112059",
+                            "Name": "Fungal Spores"
+                        },
+                        {
+                            "Id": "i_n112060",
+                            "Name": "Luminescent Pollen"
+                        },
+                        {
+                            "Id": "i_n112061",
+                            "Name": "Crystalline Cyst Dust"
+                        }
+                    ]
+                ],
+                [
+                    "/img/m_26120301_100.webp",
+                    {
+                        "Id": "m_26120301",
+                        "Name": "Grounded Hydroshroom"
+                    },
+                    "Regular",
+                    [
+                        {
+                            "Id": "i_2001",
+                            "Name": "Mora"
+                        },
+                        {
+                            "Id": "i_n112062",
+                            "Name": "Inactivated Fungal Nucleus"
+                        },
+                        {
+                            "Id": "i_n112063",
+                            "Name": "Dormant Fungal Nucleus"
+                        },
+                        {
+                            "Id": "i_n112064",
+                            "Name": "Robust Fungal Nucleus"
+                        },
+                        {
+                            "Id": "i_n112059",
+                            "Name": "Fungal Spores"
+                        },
+                        {
+                            "Id": "i_n112060",
+                            "Name": "Luminescent Pollen"
+                        },
+                        {
+                            "Id": "i_n112061",
+                            "Name": "Crystalline Cyst Dust"
+                        }
+                    ]
+                ]
+            ],
+            "Path": [
+                {
+                    "Id": "similar_monsters",
+                    "Name": "Similar Monsters"
+                }
+            ]
+        },
+        {
+            "Headers": [
+                "Icon",
+                "Name",
+                "Monsters",
+                "Reward"
+            ],
+            "Rows": [
+                [
+                    "/img/d_21_35.webp",
+                    {
+                        "Id": "d_21",
+                        "Name": "Tower of Abject Pride"
+                    },
+                    [
+                        {
+                            "Id": "m_26090701",
+                            "Name": "Stretchy Pyro Fungus"
+                        },
+                        {
+                            "Id": "m_26090201",
+                            "Name": "Floating Dendro Fungus"
+                        },
+                        {
+                            "Id": "m_26090101",
+                            "Name": "Floating Hydro Fungus"
+                        },
+                        {
+                            "Id": "m_26090401",
+                            "Name": "Whirling Electro Fungus"
+                        },
+                        {
+                            "Id": "m_26090501",
+                            "Name": "Whirling Cryo Fungus"
+                        },
+                        {
+                            "Id": "m_26090901",
+                            "Name": "Stretchy Geo Fungus"
+                        },
+                        {
+                            "Id": "m_26120301",
+                            "Name": "Grounded Hydroshroom"
+                        },
+                        {
+                            "Id": "m_26120101",
+                            "Name": "Winged Dendroshroom"
+                        }
+                    ],
+                    [
+                        {
+                            "Id": "i_2002",
+                            "Name": "Adventure EXP",
+                            "Amount": "100"
+                        },
+                        {
+                            "Id": "i_2001",
+                            "Name": "Mora",
+                            "Amount": "1125"
+                        },
+                        {
+                            "Id": "i_2004",
+                            "Name": "Companionship EXP",
+                            "Amount": "10"
+                        },
+                        {
+                            "Id": "i_n114037",
+                            "Name": "Copper Talisman of the Forest Dew",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n114041",
+                            "Name": "Oasis Garden's Reminiscence",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n114045",
+                            "Name": "Echo of Scorching Might",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n114038",
+                            "Name": "Iron Talisman of the Forest Dew",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n114039",
+                            "Name": "Silver Talisman of the Forest Dew",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n114040",
+                            "Name": "Golden Talisman of the Forest Dew",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n114042",
+                            "Name": "Oasis Garden's Kindness",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n114046",
+                            "Name": "Remnant Glow of Scorching Might",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n114043",
+                            "Name": "Oasis Garden's Mourning",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n114044",
+                            "Name": "Oasis Garden's Truth",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n114047",
+                            "Name": "Dream of Scorching Might",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n114048",
+                            "Name": "Olden Days of Scorching Might",
+                            "Amount": ""
+                        }
+                    ]
+                ],
+                [
+                    "/img/d_22_35.webp",
+                    {
+                        "Id": "d_22",
+                        "Name": "City of Gold"
+                    },
+                    [
+                        {
+                            "Id": "m_20011001",
+                            "Name": "Hydro Slime"
+                        },
+                        {
+                            "Id": "m_20011201",
+                            "Name": "Pyro Slime"
+                        },
+                        {
+                            "Id": "m_26090701",
+                            "Name": "Stretchy Pyro Fungus"
+                        },
+                        {
+                            "Id": "m_20010801",
+                            "Name": "Cryo Slime"
+                        },
+                        {
+                            "Id": "m_20010601",
+                            "Name": "Large Electro Slime"
+                        },
+                        {
+                            "Id": "m_20011301",
+                            "Name": "Large Pyro Slime"
+                        },
+                        {
+                            "Id": "m_26090401",
+                            "Name": "Whirling Electro Fungus"
+                        },
+                        {
+                            "Id": "m_26120201",
+                            "Name": "Winged Cryoshroom"
+                        },
+                        {
+                            "Id": "m_26120401",
+                            "Name": "Grounded Geoshroom"
+                        },
+                        {
+                            "Id": "m_20011101",
+                            "Name": "Large Hydro Slime"
+                        },
+                        {
+                            "Id": "m_26120301",
+                            "Name": "Grounded Hydroshroom"
+                        }
+                    ],
+                    [
+                        {
+                            "Id": "i_2002",
+                            "Name": "Adventure EXP",
+                            "Amount": "100"
+                        },
+                        {
+                            "Id": "i_2001",
+                            "Name": "Mora",
+                            "Amount": "1850"
+                        },
+                        {
+                            "Id": "i_2004",
+                            "Name": "Companionship EXP",
+                            "Amount": "15"
+                        },
+                        {
+                            "Id": "i_n400002",
+                            "Name": "Resolution of Sojourner",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n400007",
+                            "Name": "Brave Heart",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n400220",
+                            "Name": "Desert Pavilion Chronicle",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n400230",
+                            "Name": "Flower of Paradise Lost",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n400003",
+                            "Name": "Resolution of Sojourner",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n400008",
+                            "Name": "Brave Heart",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n400221",
+                            "Name": "Desert Pavilion Chronicle",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n400231",
+                            "Name": "Flower of Paradise Lost",
+                            "Amount": ""
+                        }
+                    ]
+                ],
+                [
+                    "/img/d_1063_35.webp",
+                    {
+                        "Id": "d_1063",
+                        "Name": "Under the Umbrella's Shade"
+                    },
+                    [
+                        {
+                            "Id": "m_26120101",
+                            "Name": "Winged Dendroshroom"
+                        },
+                        {
+                            "Id": "m_26120201",
+                            "Name": "Winged Cryoshroom"
+                        },
+                        {
+                            "Id": "m_26120301",
+                            "Name": "Grounded Hydroshroom"
+                        },
+                        {
+                            "Id": "m_26090101",
+                            "Name": "Floating Hydro Fungus"
+                        },
+                        {
+                            "Id": "m_26090201",
+                            "Name": "Floating Dendro Fungus"
+                        },
+                        {
+                            "Id": "m_26090401",
+                            "Name": "Whirling Electro Fungus"
+                        },
+                        {
+                            "Id": "m_26090501",
+                            "Name": "Whirling Cryo Fungus"
+                        },
+                        {
+                            "Id": "m_26090701",
+                            "Name": "Stretchy Pyro Fungus"
+                        },
+                        {
+                            "Id": "m_26090801",
+                            "Name": "Stretchy Anemo Fungus"
+                        },
+                        {
+                            "Id": "m_26090901",
+                            "Name": "Stretchy Geo Fungus"
+                        }
+                    ],
+                    []
+                ],
+                [
+                    "/img/d_1074_35.webp",
+                    {
+                        "Id": "d_1074",
+                        "Name": "City of the Deceased"
+                    },
+                    [
+                        {
+                            "Id": "m_20010501",
+                            "Name": "Electro Slime"
+                        },
+                        {
+                            "Id": "m_20011001",
+                            "Name": "Hydro Slime"
+                        },
+                        {
+                            "Id": "m_20011101",
+                            "Name": "Large Hydro Slime"
+                        },
+                        {
+                            "Id": "m_20011201",
+                            "Name": "Pyro Slime"
+                        },
+                        {
+                            "Id": "m_21011001",
+                            "Name": "Electro Hilichurl Shooter"
+                        },
+                        {
+                            "Id": "m_21010701",
+                            "Name": "Hilichurl Berserker"
+                        },
+                        {
+                            "Id": "m_21020201",
+                            "Name": "Blazing Axe Mitachurl"
+                        },
+                        {
+                            "Id": "m_26090101",
+                            "Name": "Floating Hydro Fungus"
+                        },
+                        {
+                            "Id": "m_26090401",
+                            "Name": "Whirling Electro Fungus"
+                        },
+                        {
+                            "Id": "m_26090701",
+                            "Name": "Stretchy Pyro Fungus"
+                        },
+                        {
+                            "Id": "m_26090901",
+                            "Name": "Stretchy Geo Fungus"
+                        },
+                        {
+                            "Id": "m_26120101",
+                            "Name": "Winged Dendroshroom"
+                        },
+                        {
+                            "Id": "m_26120401",
+                            "Name": "Grounded Geoshroom"
+                        },
+                        {
+                            "Id": "m_26120301",
+                            "Name": "Grounded Hydroshroom"
+                        }
+                    ],
+                    []
+                ],
+                [
+                    "/img/d_1001_35.webp",
+                    {
+                        "Id": "d_1001",
+                        "Name": "Spiral Abyss"
+                    },
+                    [],
+                    [
+                        {
+                            "Id": "i_2101",
+                            "Name": "Primogem",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_2001",
+                            "Name": "Mora",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_12",
+                            "Name": "Adventurer's Experience",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_11",
+                            "Name": "Wanderer's Advice",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_3",
+                            "Name": "Mystic Enhancement Ore",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n117001",
+                            "Name": "Domain Reliquary: Tier III",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_903",
+                            "Name": "Northlander Polearm Billet",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n117002",
+                            "Name": "Domain Reliquary: Tier II",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n117003",
+                            "Name": "Domain Reliquary: Tier I",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_13",
+                            "Name": "Hero's Wit",
+                            "Amount": ""
+                        }
+                    ]
+                ]
+            ],
+            "Path": [
+                {
+                    "Id": "found_in_domain",
+                    "Name": "Found in Domain"
+                }
+            ]
+        },
+        {
+            "Headers": [
+                "Icon",
+                "Name",
+                "Monsters",
+                "Reward"
+            ],
+            "Rows": [
+                [
+                    "/img/dl_1156_35.webp",
+                    {
+                        "Id": "dl_1156",
+                        "Name": "Mysterious Ruins"
+                    },
+                    [
+                        {
+                            "Id": "m_26120401",
+                            "Name": "Grounded Geoshroom"
+                        },
+                        {
+                            "Id": "m_26120301",
+                            "Name": "Grounded Hydroshroom"
+                        },
+                        {
+                            "Id": "m_26120101",
+                            "Name": "Winged Dendroshroom"
+                        },
+                        {
+                            "Id": "m_26090901",
+                            "Name": "Stretchy Geo Fungus"
+                        },
+                        {
+                            "Id": "m_26090101",
+                            "Name": "Floating Hydro Fungus"
+                        },
+                        {
+                            "Id": "m_26090201",
+                            "Name": "Floating Dendro Fungus"
+                        },
+                        {
+                            "Id": "m_26090801",
+                            "Name": "Stretchy Anemo Fungus"
+                        }
+                    ],
+                    []
+                ],
+                [
+                    "/img/dl_1158_35.webp",
+                    {
+                        "Id": "dl_1158",
+                        "Name": "Desert Vivarium"
+                    },
+                    [
+                        {
+                            "Id": "m_26090201",
+                            "Name": "Floating Dendro Fungus"
+                        },
+                        {
+                            "Id": "m_26090401",
+                            "Name": "Whirling Electro Fungus"
+                        },
+                        {
+                            "Id": "m_26090501",
+                            "Name": "Whirling Cryo Fungus"
+                        },
+                        {
+                            "Id": "m_26120101",
+                            "Name": "Winged Dendroshroom"
+                        },
+                        {
+                            "Id": "m_26120201",
+                            "Name": "Winged Cryoshroom"
+                        },
+                        {
+                            "Id": "m_26120301",
+                            "Name": "Grounded Hydroshroom"
+                        }
+                    ],
+                    []
+                ],
+                [
+                    "/img/dl_1174_35.webp",
+                    {
+                        "Id": "dl_1174",
+                        "Name": "Secret Cavern"
+                    },
+                    [
+                        {
+                            "Id": "m_20011001",
+                            "Name": "Hydro Slime"
+                        },
+                        {
+                            "Id": "m_20011101",
+                            "Name": "Large Hydro Slime"
+                        },
+                        {
+                            "Id": "m_20010401",
+                            "Name": "Large Anemo Slime"
+                        },
+                        {
+                            "Id": "m_26010301",
+                            "Name": "Electro Whopperflower"
+                        },
+                        {
+                            "Id": "m_26010101",
+                            "Name": "Cryo Whopperflower"
+                        },
+                        {
+                            "Id": "m_26090101",
+                            "Name": "Floating Hydro Fungus"
+                        },
+                        {
+                            "Id": "m_26090801",
+                            "Name": "Stretchy Anemo Fungus"
+                        },
+                        {
+                            "Id": "m_26091001",
+                            "Name": "Stretchy Electro Fungus"
+                        },
+                        {
+                            "Id": "m_26090601",
+                            "Name": "Whirling Pyro Fungus"
+                        },
+                        {
+                            "Id": "m_26120101",
+                            "Name": "Winged Dendroshroom"
+                        },
+                        {
+                            "Id": "m_26120401",
+                            "Name": "Grounded Geoshroom"
+                        },
+                        {
+                            "Id": "m_26120301",
+                            "Name": "Grounded Hydroshroom"
+                        },
+                        {
+                            "Id": "m_26110101",
+                            "Name": "Jadeplume Terrorshroom"
+                        }
+                    ],
+                    [
+                        {
+                            "Id": "i_372",
+                            "Name": "Nagadus Emerald Fragment",
+                            "Amount": "1"
+                        },
+                        {
+                            "Id": "i_12",
+                            "Name": "Adventurer's Experience",
+                            "Amount": "2"
+                        },
+                        {
+                            "Id": "i_3",
+                            "Name": "Mystic Enhancement Ore",
+                            "Amount": "2"
+                        },
+                        {
+                            "Id": "i_2001",
+                            "Name": "Mora",
+                            "Amount": "10000"
+                        }
+                    ]
+                ],
+                [
+                    "/img/dl_4046_35.webp",
+                    {
+                        "Id": "dl_4046",
+                        "Name": "The Universal Fungus"
+                    },
+                    [
+                        {
+                            "Id": "m_26120101",
+                            "Name": "Winged Dendroshroom"
+                        },
+                        {
+                            "Id": "m_26120201",
+                            "Name": "Winged Cryoshroom"
+                        },
+                        {
+                            "Id": "m_26120301",
+                            "Name": "Grounded Hydroshroom"
+                        },
+                        {
+                            "Id": "m_26090101",
+                            "Name": "Floating Hydro Fungus"
+                        },
+                        {
+                            "Id": "m_26090201",
+                            "Name": "Floating Dendro Fungus"
+                        },
+                        {
+                            "Id": "m_26090401",
+                            "Name": "Whirling Electro Fungus"
+                        },
+                        {
+                            "Id": "m_26090501",
+                            "Name": "Whirling Cryo Fungus"
+                        },
+                        {
+                            "Id": "m_26090701",
+                            "Name": "Stretchy Pyro Fungus"
+                        },
+                        {
+                            "Id": "m_26090801",
+                            "Name": "Stretchy Anemo Fungus"
+                        },
+                        {
+                            "Id": "m_26090901",
+                            "Name": "Stretchy Geo Fungus"
+                        }
+                    ],
+                    []
+                ],
+                [
+                    "/img/dl_4062_35.webp",
+                    {
+                        "Id": "dl_4062",
+                        "Name": "Suspiration of the Deceased"
+                    },
+                    [
+                        {
+                            "Id": "m_20010501",
+                            "Name": "Electro Slime"
+                        },
+                        {
+                            "Id": "m_20011001",
+                            "Name": "Hydro Slime"
+                        },
+                        {
+                            "Id": "m_20011101",
+                            "Name": "Large Hydro Slime"
+                        },
+                        {
+                            "Id": "m_20011201",
+                            "Name": "Pyro Slime"
+                        },
+                        {
+                            "Id": "m_21011001",
+                            "Name": "Electro Hilichurl Shooter"
+                        },
+                        {
+                            "Id": "m_21010701",
+                            "Name": "Hilichurl Berserker"
+                        },
+                        {
+                            "Id": "m_21020201",
+                            "Name": "Blazing Axe Mitachurl"
+                        },
+                        {
+                            "Id": "m_26090101",
+                            "Name": "Floating Hydro Fungus"
+                        },
+                        {
+                            "Id": "m_26090401",
+                            "Name": "Whirling Electro Fungus"
+                        },
+                        {
+                            "Id": "m_26090701",
+                            "Name": "Stretchy Pyro Fungus"
+                        },
+                        {
+                            "Id": "m_26090901",
+                            "Name": "Stretchy Geo Fungus"
+                        },
+                        {
+                            "Id": "m_26120101",
+                            "Name": "Winged Dendroshroom"
+                        },
+                        {
+                            "Id": "m_26120401",
+                            "Name": "Grounded Geoshroom"
+                        },
+                        {
+                            "Id": "m_26120301",
+                            "Name": "Grounded Hydroshroom"
+                        }
+                    ],
+                    []
+                ],
+                [
+                    "/img/dl_4372_35.webp",
+                    {
+                        "Id": "dl_4372",
+                        "Name": "Domain of Forgery: Tainted Clouds III"
+                    },
+                    [
+                        {
+                            "Id": "m_26090701",
+                            "Name": "Stretchy Pyro Fungus"
+                        },
+                        {
+                            "Id": "m_26090501",
+                            "Name": "Whirling Cryo Fungus"
+                        },
+                        {
+                            "Id": "m_26090901",
+                            "Name": "Stretchy Geo Fungus"
+                        },
+                        {
+                            "Id": "m_26090401",
+                            "Name": "Whirling Electro Fungus"
+                        },
+                        {
+                            "Id": "m_26090201",
+                            "Name": "Floating Dendro Fungus"
+                        },
+                        {
+                            "Id": "m_26120301",
+                            "Name": "Grounded Hydroshroom"
+                        },
+                        {
+                            "Id": "m_26120101",
+                            "Name": "Winged Dendroshroom"
+                        }
+                    ],
+                    [
+                        {
+                            "Id": "i_2002",
+                            "Name": "Adventure EXP",
+                            "Amount": "100"
+                        },
+                        {
+                            "Id": "i_2001",
+                            "Name": "Mora",
+                            "Amount": "1850"
+                        },
+                        {
+                            "Id": "i_2004",
+                            "Name": "Companionship EXP",
+                            "Amount": "15"
+                        },
+                        {
+                            "Id": "i_n114037",
+                            "Name": "Copper Talisman of the Forest Dew",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n114038",
+                            "Name": "Iron Talisman of the Forest Dew",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n114039",
+                            "Name": "Silver Talisman of the Forest Dew",
+                            "Amount": ""
+                        }
+                    ]
+                ],
+                [
+                    "/img/dl_4373_35.webp",
+                    {
+                        "Id": "dl_4373",
+                        "Name": "Domain of Forgery: Tainted Clouds IV"
+                    },
+                    [
+                        {
+                            "Id": "m_26090101",
+                            "Name": "Floating Hydro Fungus"
+                        },
+                        {
+                            "Id": "m_26090201",
+                            "Name": "Floating Dendro Fungus"
+                        },
+                        {
+                            "Id": "m_26120301",
+                            "Name": "Grounded Hydroshroom"
+                        },
+                        {
+                            "Id": "m_26120101",
+                            "Name": "Winged Dendroshroom"
+                        }
+                    ],
+                    [
+                        {
+                            "Id": "i_2002",
+                            "Name": "Adventure EXP",
+                            "Amount": "100"
+                        },
+                        {
+                            "Id": "i_2001",
+                            "Name": "Mora",
+                            "Amount": "2200"
+                        },
+                        {
+                            "Id": "i_2004",
+                            "Name": "Companionship EXP",
+                            "Amount": "20"
+                        },
+                        {
+                            "Id": "i_n114037",
+                            "Name": "Copper Talisman of the Forest Dew",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n114038",
+                            "Name": "Iron Talisman of the Forest Dew",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n114039",
+                            "Name": "Silver Talisman of the Forest Dew",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n114040",
+                            "Name": "Golden Talisman of the Forest Dew",
+                            "Amount": ""
+                        }
+                    ]
+                ],
+                [
+                    "/img/dl_4376_35.webp",
+                    {
+                        "Id": "dl_4376",
+                        "Name": "Domain of Forgery: Obsession III"
+                    },
+                    [
+                        {
+                            "Id": "m_26090701",
+                            "Name": "Stretchy Pyro Fungus"
+                        },
+                        {
+                            "Id": "m_26090501",
+                            "Name": "Whirling Cryo Fungus"
+                        },
+                        {
+                            "Id": "m_26090901",
+                            "Name": "Stretchy Geo Fungus"
+                        },
+                        {
+                            "Id": "m_26090401",
+                            "Name": "Whirling Electro Fungus"
+                        },
+                        {
+                            "Id": "m_26090201",
+                            "Name": "Floating Dendro Fungus"
+                        },
+                        {
+                            "Id": "m_26120301",
+                            "Name": "Grounded Hydroshroom"
+                        },
+                        {
+                            "Id": "m_26120101",
+                            "Name": "Winged Dendroshroom"
+                        }
+                    ],
+                    [
+                        {
+                            "Id": "i_2002",
+                            "Name": "Adventure EXP",
+                            "Amount": "100"
+                        },
+                        {
+                            "Id": "i_2001",
+                            "Name": "Mora",
+                            "Amount": "1850"
+                        },
+                        {
+                            "Id": "i_2004",
+                            "Name": "Companionship EXP",
+                            "Amount": "15"
+                        },
+                        {
+                            "Id": "i_n114041",
+                            "Name": "Oasis Garden's Reminiscence",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n114042",
+                            "Name": "Oasis Garden's Kindness",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n114043",
+                            "Name": "Oasis Garden's Mourning",
+                            "Amount": ""
+                        }
+                    ]
+                ],
+                [
+                    "/img/dl_4377_35.webp",
+                    {
+                        "Id": "dl_4377",
+                        "Name": "Domain of Forgery: Obsession IV"
+                    },
+                    [
+                        {
+                            "Id": "m_26090101",
+                            "Name": "Floating Hydro Fungus"
+                        },
+                        {
+                            "Id": "m_26090201",
+                            "Name": "Floating Dendro Fungus"
+                        },
+                        {
+                            "Id": "m_26120301",
+                            "Name": "Grounded Hydroshroom"
+                        },
+                        {
+                            "Id": "m_26120101",
+                            "Name": "Winged Dendroshroom"
+                        }
+                    ],
+                    [
+                        {
+                            "Id": "i_2002",
+                            "Name": "Adventure EXP",
+                            "Amount": "100"
+                        },
+                        {
+                            "Id": "i_2001",
+                            "Name": "Mora",
+                            "Amount": "2200"
+                        },
+                        {
+                            "Id": "i_2004",
+                            "Name": "Companionship EXP",
+                            "Amount": "20"
+                        },
+                        {
+                            "Id": "i_n114041",
+                            "Name": "Oasis Garden's Reminiscence",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n114042",
+                            "Name": "Oasis Garden's Kindness",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n114043",
+                            "Name": "Oasis Garden's Mourning",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n114044",
+                            "Name": "Oasis Garden's Truth",
+                            "Amount": ""
+                        }
+                    ]
+                ],
+                [
+                    "/img/dl_4380_35.webp",
+                    {
+                        "Id": "dl_4380",
+                        "Name": "Domain of Forgery: Leading Karma III"
+                    },
+                    [
+                        {
+                            "Id": "m_26090701",
+                            "Name": "Stretchy Pyro Fungus"
+                        },
+                        {
+                            "Id": "m_26090501",
+                            "Name": "Whirling Cryo Fungus"
+                        },
+                        {
+                            "Id": "m_26090901",
+                            "Name": "Stretchy Geo Fungus"
+                        },
+                        {
+                            "Id": "m_26090401",
+                            "Name": "Whirling Electro Fungus"
+                        },
+                        {
+                            "Id": "m_26090201",
+                            "Name": "Floating Dendro Fungus"
+                        },
+                        {
+                            "Id": "m_26120301",
+                            "Name": "Grounded Hydroshroom"
+                        },
+                        {
+                            "Id": "m_26120101",
+                            "Name": "Winged Dendroshroom"
+                        }
+                    ],
+                    [
+                        {
+                            "Id": "i_2002",
+                            "Name": "Adventure EXP",
+                            "Amount": "100"
+                        },
+                        {
+                            "Id": "i_2001",
+                            "Name": "Mora",
+                            "Amount": "1850"
+                        },
+                        {
+                            "Id": "i_2004",
+                            "Name": "Companionship EXP",
+                            "Amount": "15"
+                        },
+                        {
+                            "Id": "i_n114045",
+                            "Name": "Echo of Scorching Might",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n114046",
+                            "Name": "Remnant Glow of Scorching Might",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n114047",
+                            "Name": "Dream of Scorching Might",
+                            "Amount": ""
+                        }
+                    ]
+                ],
+                [
+                    "/img/dl_4381_35.webp",
+                    {
+                        "Id": "dl_4381",
+                        "Name": "Domain of Forgery: Leading Karma IV"
+                    },
+                    [
+                        {
+                            "Id": "m_26090101",
+                            "Name": "Floating Hydro Fungus"
+                        },
+                        {
+                            "Id": "m_26090201",
+                            "Name": "Floating Dendro Fungus"
+                        },
+                        {
+                            "Id": "m_26120301",
+                            "Name": "Grounded Hydroshroom"
+                        },
+                        {
+                            "Id": "m_26120101",
+                            "Name": "Winged Dendroshroom"
+                        }
+                    ],
+                    [
+                        {
+                            "Id": "i_2002",
+                            "Name": "Adventure EXP",
+                            "Amount": "100"
+                        },
+                        {
+                            "Id": "i_2001",
+                            "Name": "Mora",
+                            "Amount": "2200"
+                        },
+                        {
+                            "Id": "i_2004",
+                            "Name": "Companionship EXP",
+                            "Amount": "20"
+                        },
+                        {
+                            "Id": "i_n114045",
+                            "Name": "Echo of Scorching Might",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n114046",
+                            "Name": "Remnant Glow of Scorching Might",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n114047",
+                            "Name": "Dream of Scorching Might",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n114048",
+                            "Name": "Olden Days of Scorching Might",
+                            "Amount": ""
+                        }
+                    ]
+                ],
+                [
+                    "/img/dl_5062_35.webp",
+                    {
+                        "Id": "dl_5062",
+                        "Name": "Domain of Blessing: Desert Citadel III"
+                    },
+                    [
+                        {
+                            "Id": "m_26120401",
+                            "Name": "Grounded Geoshroom"
+                        },
+                        {
+                            "Id": "m_20011301",
+                            "Name": "Large Pyro Slime"
+                        },
+                        {
+                            "Id": "m_20011101",
+                            "Name": "Large Hydro Slime"
+                        },
+                        {
+                            "Id": "m_26120301",
+                            "Name": "Grounded Hydroshroom"
+                        }
+                    ],
+                    [
+                        {
+                            "Id": "i_2002",
+                            "Name": "Adventure EXP",
+                            "Amount": "100"
+                        },
+                        {
+                            "Id": "i_2001",
+                            "Name": "Mora",
+                            "Amount": "2200"
+                        },
+                        {
+                            "Id": "i_2004",
+                            "Name": "Companionship EXP",
+                            "Amount": "20"
+                        },
+                        {
+                            "Id": "i_n400002",
+                            "Name": "Resolution of Sojourner",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n400007",
+                            "Name": "Brave Heart",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n400220",
+                            "Name": "Desert Pavilion Chronicle",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n400230",
+                            "Name": "Flower of Paradise Lost",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n400003",
+                            "Name": "Resolution of Sojourner",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n400008",
+                            "Name": "Brave Heart",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n400221",
+                            "Name": "Desert Pavilion Chronicle",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n400231",
+                            "Name": "Flower of Paradise Lost",
+                            "Amount": ""
+                        }
+                    ]
+                ],
+                [
+                    "/img/dl_5063_35.webp",
+                    {
+                        "Id": "dl_5063",
+                        "Name": "Domain of Blessing: Desert Citadel IV"
+                    },
+                    [
+                        {
+                            "Id": "m_20011301",
+                            "Name": "Large Pyro Slime"
+                        },
+                        {
+                            "Id": "m_26120301",
+                            "Name": "Grounded Hydroshroom"
+                        },
+                        {
+                            "Id": "m_20011101",
+                            "Name": "Large Hydro Slime"
+                        },
+                        {
+                            "Id": "m_26120401",
+                            "Name": "Grounded Geoshroom"
+                        },
+                        {
+                            "Id": "m_26120201",
+                            "Name": "Winged Cryoshroom"
+                        }
+                    ],
+                    [
+                        {
+                            "Id": "i_2002",
+                            "Name": "Adventure EXP",
+                            "Amount": "100"
+                        },
+                        {
+                            "Id": "i_2001",
+                            "Name": "Mora",
+                            "Amount": "2525"
+                        },
+                        {
+                            "Id": "i_2004",
+                            "Name": "Companionship EXP",
+                            "Amount": "20"
+                        },
+                        {
+                            "Id": "i_n400002",
+                            "Name": "Resolution of Sojourner",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n400007",
+                            "Name": "Brave Heart",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n400220",
+                            "Name": "Desert Pavilion Chronicle",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n400230",
+                            "Name": "Flower of Paradise Lost",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n400003",
+                            "Name": "Resolution of Sojourner",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n400008",
+                            "Name": "Brave Heart",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n400221",
+                            "Name": "Desert Pavilion Chronicle",
+                            "Amount": ""
+                        },
+                        {
+                            "Id": "i_n400231",
+                            "Name": "Flower of Paradise Lost",
+                            "Amount": ""
+                        }
+                    ]
+                ]
+            ],
+            "Path": [
+                {
+                    "Id": "found_in_level",
+                    "Name": "Found in Stage"
+                }
+            ]
+        },
+        {
+            "Headers": [
+                "Icon",
+                "Name",
+                "Description"
+            ],
+            "Rows": [
+                [
+                    "/img/tut_2090_tab_icon_35.webp",
+                    {
+                        "Id": "tut_2090",
+                        "Name": "Fungus"
+                    },
+                    "A monster with basic intelligence that evolved from spores. When first hit by Electro or Pyro attacks, it will enter either an Activated or a Scorched state based on the elemental attack type used. Defeat this transformed fungus to obtain different types of rewards..."
+                ]
+            ],
+            "Path": [
+                {
+                    "Id": "related_tut",
+                    "Name": "Related Tutorial"
+                }
+            ]
+        }
+    ],
+    "Metadata": {
+        "ModifiedAt": "2023-06-15T00:54:21+00:00",
+        "Locale": "en_us"
+    }
+}

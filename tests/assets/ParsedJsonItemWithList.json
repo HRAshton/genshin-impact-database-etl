@@ -1,0 +1,150 @@
+{
+    "Id": "fam_book_family_1008",
+    "Name": "Records of Jueyun",
+    "Main": {
+        "Name": "Records of Jueyun: Stone Beasts",
+        "Type (Ingame)": "Quest Item",
+        "Family": [
+            {
+                "Id": "tag",
+                "Name": "Tag placeholder"
+            },
+            {
+                "Id": "fam_book",
+                "Name": "Book"
+            },
+            {
+                "Id": "fam_book_family_1008",
+                "Name": "Records of Jueyun"
+            }
+        ],
+        "Rarity": 3,
+        "Description": "A collection of folk stories, myths, and legends from Liyue. It's quite a page-turner. This segment is on the legends of stone beasts.",
+        "Image": "/img/i_100399.webp?x50246"
+    },
+    "Tables": [
+        {
+            "Headers": [
+                "Icon",
+                "Name",
+                "Rarity",
+                "Family"
+            ],
+            "Rows": [
+                [
+                    "/img/i_100399_35.webp",
+                    {
+                        "Id": "i_100399",
+                        "Name": "Records of Jueyun: Stone Beasts"
+                    },
+                    3,
+                    [
+                        {
+                            "Id": "fam_book",
+                            "Name": "Book"
+                        },
+                        {
+                            "Id": "fam_book_family_1008",
+                            "Name": "Records of Jueyun"
+                        }
+                    ]
+                ],
+                [
+                    "/img/i_100400_35.webp",
+                    {
+                        "Id": "i_100400",
+                        "Name": "Records of Jueyun: Palace Beneath the Sea"
+                    },
+                    3,
+                    [
+                        {
+                            "Id": "fam_book",
+                            "Name": "Book"
+                        },
+                        {
+                            "Id": "fam_book_family_1008",
+                            "Name": "Records of Jueyun"
+                        }
+                    ]
+                ],
+                [
+                    "/img/i_100637_35.webp",
+                    {
+                        "Id": "i_100637",
+                        "Name": "Records of Jueyun: Wuwang"
+                    },
+                    3,
+                    [
+                        {
+                            "Id": "fam_book",
+                            "Name": "Book"
+                        },
+                        {
+                            "Id": "fam_book_family_1008",
+                            "Name": "Records of Jueyun"
+                        }
+                    ]
+                ],
+                [
+                    "/img/i_100638_35.webp",
+                    {
+                        "Id": "i_100638",
+                        "Name": "Records of Jueyun: Mountain Spirits"
+                    },
+                    3,
+                    [
+                        {
+                            "Id": "fam_book",
+                            "Name": "Book"
+                        },
+                        {
+                            "Id": "fam_book_family_1008",
+                            "Name": "Records of Jueyun"
+                        }
+                    ]
+                ],
+                [
+                    "/img/i_100730_35.webp",
+                    {
+                        "Id": "i_100730",
+                        "Name": "Records of Jueyun: Qilin"
+                    },
+                    3,
+                    [
+                        {
+                            "Id": "fam_book",
+                            "Name": "Book"
+                        },
+                        {
+                            "Id": "fam_book_family_1008",
+                            "Name": "Records of Jueyun"
+                        }
+                    ]
+                ],
+                [
+                    "/img/i_100731_35.webp",
+                    {
+                        "Id": "i_100731",
+                        "Name": "Records of Jueyun: Hidden Jade"
+                    },
+                    3,
+                    [
+                        {
+                            "Id": "fam_book",
+                            "Name": "Book"
+                        },
+                        {
+                            "Id": "fam_book_family_1008",
+                            "Name": "Records of Jueyun"
+                        }
+                    ]
+                ]
+            ],
+            "Path": []
+        }
+    ],
+    "Metadata": {
+        "ModifiedAt": "2023-06-15T19:39:47+00:00",
+        "Locale": "en_us"
+    }
+}

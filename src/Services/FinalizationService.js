@@ -100,8 +100,8 @@ class FinalizationService {
   _getRelations(tableData, numberOfTables) {
     const key = tableData.Path.map((x) => x.Name);
     if (!key[0]) {
-      GenshinHoneyHunterWorldParser.assert(numberOfTables === 1, 'Undefined keys allowed only in list tables.'); // todo Replace with helper
-      key[0] = 'List'; // todo Do it work?
+      assert(numberOfTables === 1, 'Undefined keys allowed only in list tables.'); // todo Replace with helper
+      key[0] = 'List';
     }
 
     const headers = tableData.Headers;
