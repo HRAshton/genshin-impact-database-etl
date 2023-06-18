@@ -1,4 +1,4 @@
-﻿require('../../src/Helpers/GlobalRegister');
+require('../../src/Helpers/GlobalRegister');
 require('../../src/Repos/RawFilesRepository');
 // eslint-disable-next-line import/no-unresolved,@typescript-eslint/no-var-requires
 const { spreadsheetApp } = require('./SpreadsheetMock');

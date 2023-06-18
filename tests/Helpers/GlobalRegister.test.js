@@ -1,4 +1,4 @@
-﻿// noinspection JSUndeclaredVariable
+// noinspection JSUndeclaredVariable
 /* eslint-disable no-global-assign */
 
 require('../../src/Helpers/GlobalRegister');

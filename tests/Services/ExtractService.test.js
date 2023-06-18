@@ -1,4 +1,4 @@
-﻿require('../../src/Helpers/GlobalRegister');
+require('../../src/Helpers/GlobalRegister');
 require('../../src/Services/ExtractService');
 
 describe('ExtractService', () => {

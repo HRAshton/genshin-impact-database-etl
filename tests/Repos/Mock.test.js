@@ -1,4 +1,4 @@
-﻿// eslint-disable-next-line import/no-unresolved,@typescript-eslint/no-var-requires
+// eslint-disable-next-line import/no-unresolved,@typescript-eslint/no-var-requires
 const { ranges, initRowsCount, spreadsheetApp } = require('./SpreadsheetMock');
 
 describe('mock validation', () => {

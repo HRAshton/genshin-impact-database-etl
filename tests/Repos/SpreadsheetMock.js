@@ -1,4 +1,4 @@
-﻿// Should be equal to the number of rows in the "getRange" mock.
+// Should be equal to the number of rows in the "getRange" mock.
 const initRowsCount = 4;
 
 const ranges = {

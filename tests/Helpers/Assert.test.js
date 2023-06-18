@@ -1,4 +1,4 @@
-﻿require('../../src/Helpers/GlobalRegister');
+require('../../src/Helpers/GlobalRegister');
 require('../../src/Helpers/Assert');
 
 describe('Assert', () => {
