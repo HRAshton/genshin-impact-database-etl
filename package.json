@@ -3,6 +3,7 @@
     "version": "3.1",
     "scripts": {
         "check-types": "tsc",
+        "test": "jest",
         "lint": "eslint .",
         "lint-fix": "eslint . --fix",
         "pull": "git diff --exit-code && clasp pull",

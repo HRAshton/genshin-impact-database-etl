@@ -9,7 +9,7 @@ class RawFilesRepository {
    */
   constructor(spreadsheetId) {
     this._mainSheetName = 'main';
-    this._sheet = SpreadsheetApp.openById(spreadsheetId).getSheetByName(this._mainSheetName);
+    this._sheet = SpreadsheetApp.openById(spreadsheetId)?.getSheetByName(this._mainSheetName);
     if (!this._sheet) {
       throw new Error(`Could not find sheet with name ${this._mainSheetName} in spreadsheet ${spreadsheetId}.`);
     }

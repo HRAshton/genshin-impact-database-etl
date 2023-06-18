@@ -9,7 +9,8 @@
         "skipLibCheck": true
     },
     "include": [
-        "src/**/*.js"
+        "src/**/*.js",
+        // "tests/**/*.js" // uncomment this line to include tests in the linting
     ],
     "exclude": [
         "node_modules",

@@ -2,21 +2,27 @@
 
 'use strict';
 
+/** Repository for parsed files. */
 class ParsedFilesRepository {
-  /** @param { string } spreadsheetId */
+  /** Creates an instance of ParsedFilesRepository.
+   * @param { string } spreadsheetId - ID of the parsed files spreadsheet.
+   */
   constructor(spreadsheetId) {
     this._lock = LockService.getScriptLock();
     this._mainSheetName = 'main';
-    this._sheet = SpreadsheetApp.openById(spreadsheetId).getSheetByName(this._mainSheetName);
+    this._sheet = SpreadsheetApp.openById(spreadsheetId)?.getSheetByName(this._mainSheetName);
     if (!this._sheet) {
       throw new Error(`Could not find sheet with name ${this._mainSheetName} in spreadsheet ${spreadsheetId}.`);
     }
   }
 
-  /** @returns { ParsedFileMeta[] } */
+  /** Gets urls and file ids of all parsed files.
+   * @returns { ParsedFileMeta[] }
+   */
   getParsedHtmlFiles() {
     this._lock.waitLock(Constants.scriptTimeoutMs());
     const filesData = this._sheet.getRange('A2:B').getValues()
+      .filter((val) => val[0] && val[1])
       .map((val) => ({
         url: val[0],
         fileId: val[1],
@@ -26,10 +32,11 @@ class ParsedFilesRepository {
     return filesData;
   }
 
-  /** @param { string } url
-   *  @param { string } fileId
-   *  @param { string } json
-   *  @param { string } modifiedAt
+  /** Saves parsing result to the repository.
+   * @param { string } url - URL of the file in Google Drive.
+   * @param { string } fileId - ID of the file in Google Drive.
+   * @param { string } json - Serialized @link{ GenshinHoneyHunterWorldParser.ParsingResultModel }.
+   * @param { string } modifiedAt - Date of the last modification of the file.
    */
   saveParsingResult(url, fileId, json, modifiedAt) {
     this._lock.waitLock(Constants.scriptTimeoutMs());
@@ -63,36 +70,20 @@ class ParsedFilesRepository {
     this._lock.releaseLock();
   }
 
-  /** @returns { string[] } */
+  /** Gets all jsons with parsing results.
+   * @returns { string[] }
+   */
   getAllParsedJsons() {
     this._lock.waitLock(Constants.scriptTimeoutMs());
 
     const notes = this._sheet
       .getRange('D2:D')
       .getNotes()
-      .map((rowNodes) => rowNodes[0]);
+      .filter((rowNotes) => !!rowNotes[0])
+      .map((rowNotes) => rowNotes[0]);
 
     this._lock.releaseLock();
     return notes;
-  }
-
-  /** @returns { {json: string, row: number}[] } */
-  getJsonsWithRowNumbers() {
-    this._lock.waitLock(Constants.scriptTimeoutMs());
-    const res = this.getAllParsedJsons()
-      .map((json, index) => ({ json, row: index + 2 }));
-    this._lock.releaseLock();
-
-    return res;
-  }
-
-  /** @param { number[] } rowNumbers */
-  clearRows(rowNumbers) {
-    this._lock.waitLock(Constants.scriptTimeoutMs());
-    for (const rowNumber of rowNumbers) {
-      this._sheet.deleteRows(rowNumber, 1);
-    }
-    this._lock.releaseLock();
   }
 }
 

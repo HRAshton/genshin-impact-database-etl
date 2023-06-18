@@ -29,6 +29,7 @@
     ],
     "globals": {
         "globalRegister": "readonly",
+        "assert": "readonly",
         "FetchingService": "readonly",
         "FileSystemConnector": "readonly",
         "DashboardRepository": "readonly",

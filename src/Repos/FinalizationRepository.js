@@ -6,7 +6,7 @@ class FinalizationRepository {
   /** @param { string } spreadsheetId */
   constructor(spreadsheetId) {
     this._mainSheetName = 'finSheet';
-    this._sheet = SpreadsheetApp.openById(spreadsheetId).getSheetByName(this._mainSheetName);
+    this._sheet = SpreadsheetApp.openById(spreadsheetId)?.getSheetByName(this._mainSheetName);
     if (!this._sheet) {
       throw new Error(`Could not find sheet with name ${this._mainSheetName} in spreadsheet ${spreadsheetId}.`);
     }
@@ -14,14 +14,11 @@ class FinalizationRepository {
 
   /** @param { {key: string, value: string}[] } items */
   saveFinalizationData(items) {
-    GenshinHoneyHunterWorldParser.assert(
+    assert(
       items.every((pair) => !!pair.key && !!pair.value),
       'All elements should contain keys or values.',
     );
-    GenshinHoneyHunterWorldParser.assert(
-      items.length > 5,
-      'Too few elements.',
-    );
+    assert(items.length > 5, 'Too few elements.');
 
     const keys = items.map((pair) => [pair.key]);
     const notes = items.map((pair) => [pair.value]);

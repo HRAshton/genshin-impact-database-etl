@@ -9,7 +9,7 @@ class DashboardRepository {
    */
   constructor(spreadsheetId) {
     this._mainSheetName = 'stats';
-    this._sheet = SpreadsheetApp.openById(spreadsheetId).getSheetByName(this._mainSheetName);
+    this._sheet = SpreadsheetApp.openById(spreadsheetId)?.getSheetByName(this._mainSheetName);
     if (!this._sheet) {
       throw new Error(`Could not find sheet with name ${this._mainSheetName} in spreadsheet ${spreadsheetId}.`);
     }
@@ -17,6 +17,7 @@ class DashboardRepository {
 
   /** Saves data to the spreadsheet.
    * @param { DashboardStatisticsEntry[] } data - Data to save.
+   * @returns { void }
    */
   saveData(data) {
     const cells = [];
@@ -39,19 +40,6 @@ class DashboardRepository {
     }
 
     this._sheet.getRange(3, 1, cells.length, cells[0].length).setValues(cells);
-  }
-
-  // TODO: Remove
-  moveStats() {
-    const histSheet = this._sheet.getParent().getSheetByName('history');
-    const langs = this._sheet.getRange('A3:A').getValues();
-    const numbers = this._sheet.getRange('D3:E').getValues();
-    const date = new Date();
-
-    const cells = langs.map((langRow, i) => [date, langRow[0], ...numbers[i]]);
-    console.log(cells);
-
-    cells.forEach((row) => histSheet.appendRow(row));
   }
 }
 
